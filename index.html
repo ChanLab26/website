@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chan Lab | Neural Circuits &amp; Neurotechnology | WVU</title>
+  <meta name="description" content="Neural Circuits and Neurotechnology Laboratory at West Virginia University, Rockefeller Neuroscience Institute. Research in intracranial electrophysiology, brain-computer interfaces, and neuromodulation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────── -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="Chan Lab home">
+      <span class="nav-brand-name">Chan Lab</span>
+      <span class="nav-brand-sub">WVU · Rockefeller Neuroscience Institute</span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="clinical.html">Clinical</a></li>
+      <li><a href="studies.html">Studies</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html" class="nav-support">Support</a></li>
+      <li><a href="join.html" class="nav-join">Join Us</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────────────── -->
+<section class="hero" aria-label="Lab introduction">
+  <canvas id="neural-canvas" aria-hidden="true"></canvas>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">West Virginia University · Rockefeller Neuroscience Institute</div>
+      <h1 class="hero-title">
+        Neural Circuits &amp;<br><mark>Neurotechnology</mark><br>Laboratory
+      </h1>
+      <p class="hero-tag">
+        Understanding and modulating human brain circuits to restore neurological and psychiatric function.
+      </p>
+      <div class="hero-pills">
+        <a href="research.html#circuits" class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+          Intracranial Electrophysiology
+        </a>
+        <a href="research.html#bci" class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Brain-Computer Interfaces
+        </a>
+        <a href="research.html#neuromod" class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Neuromodulation
+        </a>
+        <a href="research.html#neurodegeneration" class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          Neurodegenerative Disease
+        </a>
+      </div>
+      <div class="hero-btns">
+        <a href="research.html" class="btn btn-gold">Explore Research</a>
+        <a href="join.html" class="btn btn-outline">Join the Lab</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div>
+        <div class="eyebrow">About the Lab</div>
+        <h2 class="section-title">Human Neuroscience at the Circuit Level</h2>
+        <p class="section-lead" style="margin-bottom:1.25rem;">
+          The Chan Lab at WVU's Rockefeller Neuroscience Institute investigates how neural circuits generate cognition, drive behavior, and go awry in neurological and psychiatric disease — using rare and privileged access to the human brain through clinical care.
+        </p>
+        <p style="font-size:.95rem;color:var(--steel);line-height:1.78;margin-bottom:1.5rem;">
+          We are a physician-scientist laboratory embedded within a comprehensive epilepsy and surgical neuromodulation program. This unique position lets us pursue research questions that can only be answered in awake, behaving humans — and to translate discoveries into better therapies for patients.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="research.html" class="btn btn-navy">Our Research</a>
+          <a href="people.html" class="btn btn-border">Meet the Team</a>
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,var(--navy) 0%,var(--circuit) 100%);border-radius:var(--r-lg);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden;">
+        <span aria-hidden="true">🧠</span>
+        <div style="position:absolute;bottom:1rem;left:1rem;right:1rem;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;">
+          Replace with lab photo or SEEG visualization
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats ─────────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Active NIH Grants</div>
+      </div>
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Peer-Reviewed Publications</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Active Technologies</div>
+      </div>
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">SEEG Research Patients</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Research Themes ──────────────────────────────────────── -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">Research</div>
+    <h2 class="section-title">Four Pillars of Investigation</h2>
+    <p class="section-lead">From single-unit recordings to closed-loop neural devices, our work spans the full translational arc from mechanistic discovery to clinical application.</p>
+    <div class="card-grid">
+
+      <a href="research.html#circuits" class="rcard">
+        <div class="rcard-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--circuit)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M6.3 17.7a8 8 0 1 1 11.4 0"/><path d="M12 9V5M12 19v-2"/></svg>
+        </div>
+        <div class="rcard-title">Human Brain Circuit Dynamics</div>
+        <p class="rcard-desc">Characterizing the spectral, spatial, and temporal signatures of large-scale human neural circuits using stereoEEG and intracranial field potentials.</p>
+        <div class="tag-row">
+          <span class="tag">SEEG</span>
+          <span class="tag">Mood circuits</span>
+          <span class="tag">Network neuroscience</span>
+          <span class="tag">Cognitive circuits</span>
+        </div>
+      </a>
+
+      <a href="research.html#bci" class="rcard">
+        <div class="rcard-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--circuit)" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 9h1M10 9h4M17 9h1"/></svg>
+        </div>
+        <div class="rcard-title">Brain-Computer Interfaces</div>
+        <p class="rcard-desc">Developing non-invasive and semi-invasive BCIs including in-ear EEG and augmented reality interfaces for neurological monitoring and communication.</p>
+        <div class="tag-row">
+          <span class="tag">SeizEAR</span>
+          <span class="tag">AR-BCI</span>
+          <span class="tag">Closed-loop</span>
+          <span class="tag">Neural decoding</span>
+        </div>
+      </a>
+
+      <a href="research.html#neuromod" class="rcard">
+        <div class="rcard-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--circuit)" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="rcard-title">Neuromodulation</div>
+        <p class="rcard-desc">Investigating and optimizing neuromodulatory therapies — from deep brain stimulation to focused ultrasound — using intracranial biomarkers to guide closed-loop control.</p>
+        <div class="tag-row">
+          <span class="tag">DBS</span>
+          <span class="tag">RNS</span>
+          <span class="tag">Focused ultrasound</span>
+          <span class="tag">VNS</span>
+        </div>
+      </a>
+
+      <a href="research.html#neurodegeneration" class="rcard">
+        <div class="rcard-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--circuit)" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="rcard-title">Neurodegenerative Disease</div>
+        <p class="rcard-desc">Discovering digital biomarkers of cognitive decline using passive sensing technologies — hearing aids, wearables, eye-tracking — in patients with Alzheimer's and related disorders.</p>
+        <div class="tag-row">
+          <span class="tag">Digital biomarkers</span>
+          <span class="tag">Alzheimer's</span>
+          <span class="tag">Hearing tech</span>
+          <span class="tag">Cognitive decline</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Technology Spotlight ─────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+      <div>
+        <div class="eyebrow">Technology</div>
+        <h2 class="section-title">Lab-Built Neurotechnology</h2>
+        <p class="section-lead" style="margin-bottom:1.5rem;">
+          We develop our own tools when existing ones don't exist. SeizEAR, our in-ear EEG platform, and Axon-R, our AR-BCI system, are both active development projects with IRB-approved clinical studies.
+        </p>
+        <a href="technology.html" class="btn btn-navy">View Technologies →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem;background:var(--ghost);border-radius:var(--r-lg);border:1px solid var(--divider);">
+          <div style="font-size:2rem;flex-shrink:0;">👂</div>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.2rem;">SeizEAR</div>
+            <div style="font-size:.83rem;color:var(--steel);">In-ear EEG for ambulatory seizure detection and biomarker capture</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem;background:var(--ghost);border-radius:var(--r-lg);border:1px solid var(--divider);">
+          <div style="font-size:2rem;flex-shrink:0;">🥽</div>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.2rem;">Axon-R</div>
+            <div style="font-size:.83rem;color:var(--steel);">Augmented reality BCI for aphasia rehabilitation</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem;background:var(--ghost);border-radius:var(--r-lg);border:1px solid var(--divider);">
+          <div style="font-size:2rem;flex-shrink:0;">📡</div>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.2rem;">SEEG Research Platform</div>
+            <div style="font-size:.83rem;color:var(--steel);">High-density intracranial recording for EMU-based research</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── News Teaser ───────────────────────────────────────────── -->
+<section class="section alt">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <div class="eyebrow">News</div>
+        <h2 class="section-title" style="margin-bottom:0;">Latest from the Lab</h2>
+      </div>
+      <a href="news.html" class="btn btn-border btn-sm">All News →</a>
+    </div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date"><div class="news-month">Jun</div><div class="news-day">15</div><div class="news-year">2025</div></div>
+        <div>
+          <div><span class="nbadge nb-grant">Grant</span></div>
+          <div class="news-title">K23 Application Under Review at NIMH Study Section</div>
+          <div class="news-desc">Andy's K23 award "Characterizing Frontal–Limbic Circuit Specific Subtype of Depression in Epilepsy Using Intracranial EEG" is under review for July 2025 study section.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date"><div class="news-month">Apr</div><div class="news-day">22</div><div class="news-year">2025</div></div>
+        <div>
+          <div><span class="nbadge nb-paper">Publication</span></div>
+          <div class="news-title">SeizEAR Manuscript Submitted to <em>Sensors</em></div>
+          <div class="news-desc">Our in-ear EEG seizure detection platform manuscript has been submitted to Sensors (MDPI), describing a novel SNR metric for ambulatory interictal detection.</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date"><div class="news-month">Mar</div><div class="news-day">10</div><div class="news-year">2025</div></div>
+        <div>
+          <div><span class="nbadge nb-event">Presentation</span></div>
+          <div class="news-title">Grand Rounds: "Epilepsy Beyond the Brain" at WVU Internal Medicine</div>
+          <div class="news-desc">Andy delivered an invited grand rounds addressing the systemic interactions of seizures, antiseizure medications, and surgical management.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Join CTA ──────────────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div style="background:linear-gradient(140deg,var(--navy-dark) 0%,var(--circuit) 100%);border-radius:var(--r-lg);padding:3rem 2.5rem;text-align:center;color:var(--white);">
+      <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:700;margin-bottom:.85rem;">Join Our Team</h2>
+      <p style="color:rgba(255,255,255,.78);max-width:520px;margin:0 auto 1.75rem;font-size:1rem;line-height:1.75;">
+        We welcome medical students, residents, graduate students, postdoctoral fellows, and industry collaborators who are passionate about translational neuroscience.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="join.html" class="btn btn-gold">Open Positions</a>
+        <a href="mailto:andy.chan@wvumedicine.org" class="btn btn-outline">Contact Andy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Funder logos (Bridi-style) ────────────────────────────── -->
+<section class="section" style="padding-top:2.5rem;padding-bottom:2.5rem;">
+  <div class="wrap center">
+    <div class="eyebrow" style="margin-bottom:.75rem;">Our Funders</div>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.75rem;max-width:560px;margin-left:auto;margin-right:auto;">Our research is made possible by support from federal agencies, private foundations, and our institutional home at WVU.</p>
+    <div class="funder-logos" style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;align-items:center;">
+      <a href="https://www.nimh.nih.gov/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">NIH</span>
+        <span class="funder-pill-name">National Institute of Mental Health</span>
+      </a>
+      <a href="https://www.ninds.nih.gov/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">NIH</span>
+        <span class="funder-pill-name">National Institute of Neurological Disorders &amp; Stroke</span>
+      </a>
+      <a href="https://www.nsf.gov/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">NSF</span>
+        <span class="funder-pill-name">IUCRC BRAIN Center</span>
+      </a>
+      <a href="https://www.fusfoundation.org/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">FUS</span>
+        <span class="funder-pill-name">Focused Ultrasound Foundation</span>
+      </a>
+      <a href="https://wvuctsi.org/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">WVU</span>
+        <span class="funder-pill-name">Clinical &amp; Translational Science Institute</span>
+      </a>
+    </div>
+    <!-- Institutional logos row -->
+    <div style="display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;align-items:center;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--divider);">
+      <a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div style="background:var(--ghost);border:1px solid var(--divider);border-radius:var(--r-md);padding:.75rem 1.5rem;text-align:center;">
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:.9rem;">WVU</div>
+          <div style="font-size:.75rem;color:var(--muted);">Department of Neurology</div>
+        </div>
+      </a>
+      <a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div style="background:var(--ghost);border:1px solid var(--divider);border-radius:var(--r-md);padding:.75rem 1.5rem;text-align:center;">
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:.9rem;">RNI</div>
+          <div style="font-size:.75rem;color:var(--muted);">Rockefeller Neuroscience Institute</div>
+        </div>
+      </a>
+      <a href="https://wvumedicine.org/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div style="background:var(--ghost);border:1px solid var(--divider);border-radius:var(--r-md);padding:.75rem 1.5rem;text-align:center;">
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:.9rem;">WVU Medicine</div>
+          <div style="font-size:.75rem;color:var(--muted);">J.W. Ruby Memorial Hospital</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Chan Lab</div>
+        <div class="footer-brand-sub">Neural Circuits &amp; Neurotechnology Laboratory<br>West Virginia University</div>
+        <div class="footer-addr">
+          Rockefeller Neuroscience Institute<br>
+          Department of Neurology<br>
+          West Virginia University<br>
+          Morgantown, WV 26506
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-head">Research</div>
+        <ul class="footer-links">
+          <li><a href="research.html#circuits">Brain Circuits</a></li>
+          <li><a href="research.html#bci">Brain-Computer Interfaces</a></li>
+          <li><a href="research.html#neuromod">Neuromodulation</a></li>
+          <li><a href="research.html#neurodegeneration">Neurodegeneration</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Lab</div>
+        <ul class="footer-links">
+          <li><a href="people.html">People</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="clinical.html">Clinical Translation</a></li>
+          <li><a href="news.html">News</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">External</div>
+        <ul class="footer-links">
+          <li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li>
+          <li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li>
+          <li><a href="studies.html">Ongoing Studies</a></li>
+          <li><a href="support.html">Support the Lab</a></li>
+          <li><a href="join.html">Join the Lab</a></li>
+          <li><a href="publications.html">PubMed ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Chan Lab, West Virginia University. All rights reserved.</div>
+      <div class="footer-rni">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Rockefeller Neuroscience Institute · WVU
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script src="neural.js"></script>
+</body>
+</html>

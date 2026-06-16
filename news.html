@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News | Chan Lab | WVU</title>
+  <meta name="description" content="News from the Chan Lab: grant awards, publications, presentations, new lab members, and media coverage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Filter bar ── */
+    .filter-bar {
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem;
+      margin-bottom:2.5rem;
+    }
+    .filter-btn {
+      padding:.45rem 1.1rem;
+      border-radius:999px;
+      border:1.5px solid var(--divider);
+      background:#fff;
+      font-family:var(--font-display);
+      font-size:.8rem;
+      font-weight:600;
+      color:var(--navy);
+      cursor:pointer;
+      transition:all .15s;
+    }
+    .filter-btn:hover {
+      border-color:var(--blue);
+      color:var(--blue);
+    }
+    .filter-btn.active {
+      background:var(--navy);
+      border-color:var(--navy);
+      color:#fff;
+    }
+    .filter-btn[data-cat="grant"].active   { background:#15693e; border-color:#15693e; }
+    .filter-btn[data-cat="paper"].active   { background:#1B6DB8; border-color:#1B6DB8; }
+    .filter-btn[data-cat="award"].active   { background:#9b4a0c; border-color:#9b4a0c; }
+    .filter-btn[data-cat="press"].active   { background:#5a1a80; border-color:#5a1a80; }
+    .filter-btn[data-cat="event"].active   { background:#002D62; border-color:#002D62; }
+    .filter-btn[data-cat="people"].active  { background:#b8860b; border-color:#b8860b; }
+
+    /* ── Year dividers ── */
+    .year-group { margin-bottom:3rem; }
+    .year-divider {
+      font-family:var(--font-display);
+      font-size:2rem;
+      font-weight:700;
+      color:var(--navy);
+      border-bottom:2px solid var(--divider);
+      padding-bottom:.5rem;
+      margin-bottom:1.5rem;
+    }
+
+    /* ── News item ── */
+    .news-item {
+      display:grid;
+      grid-template-columns:80px 1fr;
+      gap:1.5rem;
+      padding:1.5rem 0;
+      border-bottom:1px solid var(--divider);
+    }
+    .news-item:last-child { border-bottom:none; }
+    .news-date {
+      text-align:center;
+      flex-shrink:0;
+    }
+    .news-month {
+      font-family:var(--font-display);
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:var(--blue);
+    }
+    .news-day {
+      font-family:var(--font-display);
+      font-size:1.75rem;
+      font-weight:700;
+      color:var(--navy);
+      line-height:1;
+    }
+    .news-year {
+      font-size:.75rem;
+      color:var(--muted);
+    }
+    .news-body { min-width:0; }
+    .news-title {
+      font-family:var(--font-display);
+      font-size:1.05rem;
+      font-weight:600;
+      color:var(--navy);
+      margin:.4rem 0 .45rem;
+      line-height:1.35;
+    }
+    .news-desc {
+      font-size:.9rem;
+      color:var(--ink);
+      line-height:1.65;
+    }
+    .news-link {
+      display:inline-block;
+      margin-top:.6rem;
+      font-size:.82rem;
+      font-weight:600;
+      color:var(--blue);
+      text-decoration:none;
+    }
+    .news-link:hover { text-decoration:underline; }
+
+    /* ── Badges ── already in style.css, repeated here for safety ── */
+    .nbadge {
+      display:inline-block;
+      padding:.18rem .55rem;
+      border-radius:4px;
+      font-family:var(--font-display);
+      font-size:.68rem;
+      font-weight:700;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      line-height:1.4;
+    }
+    .nb-grant   { background:#d4edda; color:#15693e; }
+    .nb-paper   { background:#d0e8f9; color:#1B6DB8; }
+    .nb-award   { background:#fde8d8; color:#9b4a0c; }
+    .nb-press   { background:#ead8f5; color:#5a1a80; }
+    .nb-event   { background:#dce3ef; color:#002D62; }
+    .nb-people  { background:#fef3cd; color:#b8860b; }
+
+    /* ── Hidden items ── */
+    .news-item[hidden] { display:none; }
+    .news-item[data-hidden] { display:none !important; }
+    .year-group.empty { display:none; }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">Chan Lab</span>
+      <span class="nav-brand-sub">WVU · Rockefeller Neuroscience Institute</span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="clinical.html">Clinical</a></li>
+      <li><a href="studies.html">Studies</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html" class="nav-support">Support</a></li>
+      <li><a href="join.html" class="nav-join">Join Us</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="page-hero-label">News</div>
+    <h1 class="page-hero-title">Lab Updates</h1>
+    <p class="page-hero-desc">
+      Grants, publications, presentations, new lab members, and media coverage from the Chan Lab.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+
+    <!-- Filter bar -->
+    <div class="filter-bar" role="group" aria-label="Filter news by category">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="grant">Grants</button>
+      <button class="filter-btn" data-cat="paper">Publications</button>
+      <button class="filter-btn" data-cat="event">Presentations</button>
+      <button class="filter-btn" data-cat="award">Awards</button>
+      <button class="filter-btn" data-cat="people">People</button>
+      <button class="filter-btn" data-cat="press">Press</button>
+    </div>
+
+    <!-- ── 2025 ── -->
+    <div class="year-group" id="year-2025">
+      <div class="year-divider">2025</div>
+
+      <div class="news-item" data-cat="grant">
+        <div class="news-date">
+          <div class="news-month">Jun</div>
+          <div class="news-day">15</div>
+          <div class="news-year">2025</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-grant">Grant</span></div>
+          <div class="news-title">K23 Application Under Review at NIMH Study Section</div>
+          <div class="news-desc">Andy's K23 Mentored Patient-Oriented Research Career Development Award, "Characterizing Frontal-Limbic Circuit Specific Subtype of Depression in Epilepsy Using Intracranial EEG" (Award No. KMH147414A), has been accepted for review at the July 2025 ZRG1 SEP study section at NIMH. This is the primary funding vehicle for the lab's biomarker discovery program.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="paper">
+        <div class="news-date">
+          <div class="news-month">Apr</div>
+          <div class="news-day">22</div>
+          <div class="news-year">2025</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-paper">Publication</span></div>
+          <div class="news-title">SeizEAR Manuscript Submitted to <em>Sensors</em> (MDPI)</div>
+          <div class="news-desc">Our in-ear EEG platform manuscript has been submitted to Sensors (MDPI), describing a novel Pearson r²-derived SNR metric for ambulatory interictal epileptiform discharge detection using the external auditory canal as a recording site. The manuscript was substantially co-written by medical student Ryan. Developed in collaboration with the Achin Bhowmik lab at Starkey Hearing Technologies.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="grant">
+        <div class="news-date">
+          <div class="news-month">Apr</div>
+          <div class="news-day">10</div>
+          <div class="news-year">2025</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-grant">Grant</span></div>
+          <div class="news-title">SENTINEL RAG Proposal Submitted — Epilepsy &amp; Sleep Comorbidity in Appalachia</div>
+          <div class="news-desc">Andy co-investigated a Research Activity Grant (RAG) proposal, "SENTINEL," led by Dr. Lulu Guo (WVU Neurology) targeting care coordination for patients with comorbid epilepsy and sleep disorders in rural Appalachian communities. Proposal focuses on telehealth-enabled, community health worker-mediated outreach.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="event">
+        <div class="news-date">
+          <div class="news-month">Mar</div>
+          <div class="news-day">10</div>
+          <div class="news-year">2025</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-event">Presentation</span></div>
+          <div class="news-title">Grand Rounds: "Epilepsy Beyond the Brain" — WVU Internal Medicine</div>
+          <div class="news-desc">Andy delivered an invited grand rounds to WVU Internal Medicine addressing the systemic interactions of seizures, antiseizure medications, and surgical management, including cardiac, metabolic, endocrine, and psychiatric comorbidities in epilepsy. Designed to improve recognition and co-management of epilepsy among hospitalists and internists.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="event">
+        <div class="news-date">
+          <div class="news-month">Feb</div>
+          <div class="news-day">18</div>
+          <div class="news-year">2025</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-event">Presentation</span></div>
+          <div class="news-title">Grand Rounds: "Epilepsy as a Brain Disease Across the Lifespan" — WVU Family Medicine</div>
+          <div class="news-desc">Andy co-presented a grand rounds lecture to WVU Family Medicine with Dr. D. Kojo Adelson (Pediatric Neurology), covering the developmental epidemiology of epilepsy, seizure recognition, first-line treatment, and indications for subspecialty referral across pediatric and adult populations.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="event">
+        <div class="news-date">
+          <div class="news-month">Jan</div>
+          <div class="news-day">28</div>
+          <div class="news-year">2025</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-event">Presentation</span></div>
+          <div class="news-title">Letter of Intent Submitted — Focused Ultrasound Foundation SEEG Biomarker Study</div>
+          <div class="news-desc">Andy submitted a Letter of Intent to the Focused Ultrasound Foundation for a mechanistic SEEG-based study of low-intensity focused ultrasound (LIFU) effects on human intracranial oscillatory activity. Proposes ANT-targeted LIFU using NaviFUS technology, with real-time stereoEEG biomarker acquisition as the primary outcome.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="press">
+        <div class="news-date">
+          <div class="news-month">Jan</div>
+          <div class="news-day">15</div>
+          <div class="news-year">2025</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-press">Media</span></div>
+          <div class="news-title">WVU "Live Healthy WV" Podcast — Epilepsy Access in Appalachia</div>
+          <div class="news-desc">Andy appeared on the WVU Health Sciences "Live Healthy WV" podcast to discuss epilepsy care access barriers in West Virginia, the role of telemedicine and community outreach in reaching underserved populations, and the state of the epilepsy surgery program at WVU Medicine.</div>
+        </div>
+      </div>
+
+    </div><!-- /year-2025 -->
+
+    <!-- ── 2024 ── -->
+    <div class="year-group" id="year-2024">
+      <div class="year-divider">2024</div>
+
+      <div class="news-item" data-cat="grant">
+        <div class="news-date">
+          <div class="news-month">Dec</div>
+          <div class="news-day">09</div>
+          <div class="news-year">2024</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-grant">Grant</span></div>
+          <div class="news-title">K23 Application Submitted to NIMH</div>
+          <div class="news-desc">Andy submitted the K23 Mentored Patient-Oriented Research Career Development Award application to NIMH after an 18-month development process. The application targets frontal-limbic circuit biomarkers of depression in drug-resistant epilepsy, leveraging the WVU SEEG research platform and mentorship from Drs. Mayberg, Parvaz, Konrad, Zheng, and Nelson.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="event">
+        <div class="news-date">
+          <div class="news-month">Nov</div>
+          <div class="news-day">30</div>
+          <div class="news-year">2024</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-event">Conference</span></div>
+          <div class="news-title">AES Annual Meeting — Abstract Accepted</div>
+          <div class="news-desc">Abstract accepted to the American Epilepsy Society Annual Meeting, presenting preliminary data from the intracranial EEG depression biomarker dataset and methodology for the K23 clinical protocol.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="paper">
+        <div class="news-date">
+          <div class="news-month">Aug</div>
+          <div class="news-day">14</div>
+          <div class="news-year">2024</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-paper">Publication</span></div>
+          <div class="news-title">SeizEAR Submitted to <em>BMC Digital Health</em></div>
+          <div class="news-desc">First external submission of the SeizEAR in-ear EEG manuscript to BMC Digital Health. Manuscript subsequently revised and resubmitted to <em>Sensors</em> (MDPI) with expanded methodological detail and peer reviewer responses incorporated.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="grant">
+        <div class="news-date">
+          <div class="news-month">Jun</div>
+          <div class="news-day">01</div>
+          <div class="news-year">2024</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-grant">Grant</span></div>
+          <div class="news-title">NSF IUCRC BRAIN Pilot Subaward — AR-BCI Aphasia Study</div>
+          <div class="news-desc">The Chan Lab received a subaward through the NSF IUCRC BRAIN Center supporting early-stage development of an augmented reality brain-computer interface for aphasia rehabilitation using the Cognixion Axon-R headset and Pupil Labs eye-tracking. IRB umbrella protocol developed to cover multi-site IUCRC research activities.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="people">
+        <div class="news-date">
+          <div class="news-month">Jul</div>
+          <div class="news-day">01</div>
+          <div class="news-year">2024</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-people">Lab Member</span></div>
+          <div class="news-title">Andy Joins WVU Rockefeller Neuroscience Institute as Assistant Professor</div>
+          <div class="news-desc">Ho Wing (Andy) Chan, MD officially joined the WVU Department of Neurology as Assistant Professor and Epileptologist-Physician Scientist. He established the Chan Lab (Neural Circuits and Neurotechnology Laboratory) at the Rockefeller Neuroscience Institute, bringing an intracranial electrophysiology and neuromodulation research program focused on epilepsy-depression comorbidity, BCI development, and digital biomarkers.</div>
+        </div>
+      </div>
+
+    </div><!-- /year-2024 -->
+
+  </div>
+</section>
+
+<!-- ── Subscribe CTA ─────────────────────────────────────────── -->
+<section class="section alt">
+  <div class="wrap center">
+    <div class="eyebrow">Stay Updated</div>
+    <h2 class="section-title">Follow the Lab</h2>
+    <p class="section-lead" style="max-width:520px;margin:0 auto 1.75rem;">
+      For real-time updates on publications, grants, and presentations, follow Andy on Google Scholar or connect on LinkedIn.
+    </p>
+    <a href="https://scholar.google.com" target="_blank" rel="noopener" class="btn btn-navy">Google Scholar</a>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ho+Wing+Chan+epilepsy" target="_blank" rel="noopener" class="btn btn-border" style="margin-left:1rem;">PubMed</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">Chan Lab</div><div class="footer-brand-sub">Neural Circuits &amp; Neurotechnology Laboratory<br>West Virginia University</div><div class="footer-addr">Rockefeller Neuroscience Institute · Department of Neurology<br>West Virginia University · Morgantown, WV 26506</div></div>
+      <div><div class="footer-col-head">Research</div><ul class="footer-links"><li><a href="research.html#circuits">Brain Circuits</a></li><li><a href="research.html#bci">BCI</a></li><li><a href="research.html#neuromod">Neuromodulation</a></li><li><a href="research.html#neurodegeneration">Neurodegeneration</a></li></ul></div>
+      <div><div class="footer-col-head">Lab</div><ul class="footer-links"><li><a href="people.html">People</a></li><li><a href="publications.html">Publications</a></li><li><a href="technology.html">Technology</a></li><li><a href="clinical.html">Clinical</a></li></ul></div>
+      <div><div class="footer-col-head">Links</div><ul class="footer-links"><li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li><li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li><li><a href="studies.html">Studies</a></li><li><a href="support.html">Support the Lab</a></li><li><a href="join.html">Join Us</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ho+Wing+Chan+epilepsy" target="_blank" rel="noopener">PubMed</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Chan Lab, West Virginia University.</div>
+      <div class="footer-rni">Rockefeller Neuroscience Institute · WVU</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+
+<script>
+/* ── News filter ── */
+(function(){
+  const btns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.news-item');
+  const groups = document.querySelectorAll('.year-group');
+
+  function filter(cat){
+    btns.forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+    items.forEach(item => {
+      if(cat === 'all' || item.dataset.cat === cat){
+        item.removeAttribute('data-hidden');
+      } else {
+        item.setAttribute('data-hidden','');
+      }
+    });
+    // Hide year groups if all their items are hidden
+    groups.forEach(g => {
+      const visible = g.querySelectorAll('.news-item:not([data-hidden])').length;
+      g.classList.toggle('empty', visible === 0);
+    });
+  }
+
+  btns.forEach(btn => btn.addEventListener('click', () => filter(btn.dataset.cat)));
+})();
+</script>
+
+</body>
+</html>

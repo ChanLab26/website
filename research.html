@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research | Chan Lab | WVU</title>
+  <meta name="description" content="Research at the Chan Lab: human brain circuits, brain-computer interfaces, neuromodulation, and neurodegenerative disease.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">Chan Lab</span>
+      <span class="nav-brand-sub">WVU · Rockefeller Neuroscience Institute</span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="clinical.html">Clinical</a></li>
+      <li><a href="studies.html">Studies</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html" class="nav-support">Support</a></li>
+      <li><a href="join.html" class="nav-join">Join Us</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="page-hero-label">Research</div>
+    <h1 class="page-hero-title">Circuits, Interfaces,<br>and Modulation</h1>
+    <p class="page-hero-desc">
+      Our research program spans from the basic science of human intracranial electrophysiology to translational devices and clinical trials. Every project maintains a direct line from mechanism to therapy.
+    </p>
+  </div>
+</header>
+
+<!-- ── Overview ─────────────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <p style="font-size:1.05rem;color:var(--steel);line-height:1.85;max-width:820px;margin:0 auto 3rem;text-align:center;">
+      The Chan Lab occupies a rare position: a physician-scientist laboratory embedded in one of the most active surgical epilepsy programs in Appalachia. Patients undergoing stereo-EEG implantation, DBS, RNS, and VNS provide irreplaceable windows into the living human brain. We combine that access with rigorous signal processing, computational neuroscience, and device development to answer questions that cannot be addressed in animal models or non-invasive imaging.
+    </p>
+
+    <!-- ── Theme 1: Brain Circuit Dynamics ─── -->
+    <div id="circuits" class="theme-block">
+      <div>
+        <div class="theme-num" aria-hidden="true">01</div>
+        <div class="theme-label">Human Brain Circuit Dynamics</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;">
+          <span class="tag">SEEG</span>
+          <span class="tag">Intracranial EEG</span>
+          <span class="tag">LFP</span>
+          <span class="tag">Network neuroscience</span>
+        </div>
+      </div>
+      <div>
+        <p class="theme-text">
+          The electrical signals recorded directly from the human brain with stereoEEG electrodes contain information that is fundamentally inaccessible to scalp EEG or fMRI. High-gamma activity, oscillatory phase coupling, cross-frequency interactions, and single-unit activity each reveal different aspects of circuit function. We work within the epilepsy monitoring unit to record broadband intracranial signals during cognitive tasks, resting state, and natural behavior, building a mechanistic understanding of how large-scale networks coordinate perception, mood, and memory.
+        </p>
+        <p class="theme-text">
+          A central focus is the frontal–limbic circuit and its role in comorbid depression in epilepsy. Approximately one-third of epilepsy patients meet criteria for major depression — not a reaction to diagnosis, but a shared circuit-level vulnerability. By recording simultaneously from prefrontal cortex, anterior cingulate, amygdala, and hippocampus during emotional paradigms, we characterize the oscillatory signatures that distinguish depressed from non-depressed epilepsy patients. This work underpins our NIMH K23 award.
+        </p>
+        <div class="topic-list">
+          <div class="topic-item">SEEG recording during cognitive and emotional paradigms in the EMU</div>
+          <div class="topic-item">Frontal–limbic beta oscillation dynamics and depression biomarkers</div>
+          <div class="topic-item">Theta–gamma coupling in human hippocampus and memory encoding</div>
+          <div class="topic-item">Graph-theoretic analysis of functional connectivity networks</div>
+          <div class="topic-item">High-frequency oscillations as epileptogenicity markers</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Theme 2: Brain-Computer Interfaces ─── -->
+    <div id="bci" class="theme-block">
+      <div>
+        <div class="theme-num" aria-hidden="true">02</div>
+        <div class="theme-label">Brain-Computer Interfaces</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;">
+          <span class="tag">SeizEAR</span>
+          <span class="tag">AR-BCI</span>
+          <span class="tag">Axon-R</span>
+          <span class="tag">Adaptive neurotechnology</span>
+        </div>
+      </div>
+      <div>
+        <p class="theme-text">
+          Brain-computer interfaces bridge the gap between the brain and the external world without requiring intracranial surgery. Our BCI program operates on two distinct platforms: SeizEAR, an in-ear EEG system embedded in a commercial hearing aid form factor; and Axon-R (the Cognixion ONE AR headset), an augmented-reality BCI for patients with expressive aphasia after stroke or epilepsy surgery.
+        </p>
+        <p class="theme-text">
+          SeizEAR targets a fundamental unmet need: continuous, ambulatory, naturalistic monitoring of brain activity in epilepsy patients. The canal is an acoustically and electrically privileged recording site, and our work has demonstrated that in-ear EEG can capture interictal epileptiform discharges with sufficient signal quality for machine learning-based detection. This has implications not just for seizure monitoring but for passive digital biomarker capture in neurodegenerative conditions.
+        </p>
+        <p class="theme-text">
+          The AR-BCI program, pursued through the NSF BRAIN Pilot IUCRC, uses the eye-tracking and display capabilities of the Axon-R headset combined with P300-based or gaze-based decoding to provide a communication and language rehabilitation interface for patients with aphasia.
+        </p>
+        <div class="topic-list">
+          <div class="topic-item">In-ear EEG hardware design and ambulatory epilepsy monitoring</div>
+          <div class="topic-item">Machine learning classifiers for interictal and ictal EEG</div>
+          <div class="topic-item">Augmented reality interfaces for neurological rehabilitation</div>
+          <div class="topic-item">P300, SSVEP, and gaze-based neural decoding</div>
+          <div class="topic-item">Closed-loop neurofeedback and adaptive stimulation triggers</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Theme 3: Neuromodulation ─── -->
+    <div id="neuromod" class="theme-block">
+      <div>
+        <div class="theme-num" aria-hidden="true">03</div>
+        <div class="theme-label">Neuromodulation</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;">
+          <span class="tag">DBS</span>
+          <span class="tag">RNS</span>
+          <span class="tag">VNS</span>
+          <span class="tag">Focused ultrasound</span>
+          <span class="tag">LIFU</span>
+        </div>
+      </div>
+      <div>
+        <p class="theme-text">
+          Neuromodulation therapies have transformed the treatment of epilepsy, Parkinson's disease, depression, and OCD — yet we still have only a limited mechanistic understanding of how they work. Our program uses the unique opportunity of intraoperative and post-implant recordings in patients undergoing DBS, RNS, and VNS to characterize the electrophysiological effects of stimulation on target circuits in real time.
+        </p>
+        <p class="theme-text">
+          We are particularly interested in low-intensity focused ultrasound (LIFU) as an emerging non-invasive or minimally invasive modulation tool. In partnership with the Focused Ultrasound Foundation and collaborators at NaviFUS, we are developing SEEG-guided LIFU protocols targeting the anterior nucleus of the thalamus — the same target as the SANTE trial — to understand how ultrasound-mediated neuromodulation interacts with ongoing thalamocortical rhythms in epilepsy. This work combines the precision of SEEG with the therapeutic promise of sonication.
+        </p>
+        <div class="topic-list">
+          <div class="topic-item">Intraoperative LFP recording during DBS lead implantation</div>
+          <div class="topic-item">Closed-loop RNS optimization using spectral biomarkers</div>
+          <div class="topic-item">ANT-targeted LIFU for epilepsy — SEEG-guided mechanistic study</div>
+          <div class="topic-item">VNS and vagal afferent modulation of cortical excitability</div>
+          <div class="topic-item">Cortical and subcortical stimulation mapping for epilepsy surgery</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Theme 4: Neurodegenerative Disease ─── -->
+    <div id="neurodegeneration" class="theme-block">
+      <div>
+        <div class="theme-num" aria-hidden="true">04</div>
+        <div class="theme-label">Neurodegenerative Disease</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;">
+          <span class="tag">Digital biomarkers</span>
+          <span class="tag">Alzheimer's</span>
+          <span class="tag">Hearing technology</span>
+          <span class="tag">Cognitive decline</span>
+        </div>
+      </div>
+      <div>
+        <p class="theme-text">
+          The overlap between epilepsy and neurodegenerative disease — particularly Alzheimer's disease — is increasingly recognized. Epilepsy is both a risk factor for and a consequence of neurodegeneration. This provides a natural bridge for our lab's expertise in neural signal analysis and device development to address a much larger patient population.
+        </p>
+        <p class="theme-text">
+          Our neurodegeneration program centers on passive digital biomarker discovery using commercial hearing aid technology. Modern hearing aids continuously sample the acoustic environment, track activity metrics, and in some cases detect falls. We are developing the scientific framework to use this passively acquired data — collected over months and years — to identify neural signatures of cognitive decline earlier than conventional clinical assessments allow. In partnership with Starkey Hearing Technologies, we are building a retrospective observational study in a neurodegenerative disease cohort.
+        </p>
+        <p class="theme-text">
+          This research direction is expected to become the laboratory's primary growth area over the next decade, as the aging of Appalachia creates urgent demand for scalable, low-burden monitoring solutions.
+        </p>
+        <div class="topic-list">
+          <div class="topic-item">Hearing aid acoustic environment and activity as cognitive biomarkers</div>
+          <div class="topic-item">Digital biomarker discovery in MCI and early Alzheimer's disease</div>
+          <div class="topic-item">Eye-tracking metrics as neurodegenerative signatures</div>
+          <div class="topic-item">Wearable and passive sensing for longitudinal cognitive monitoring</div>
+          <div class="topic-item">Neural signatures of degeneration in late-onset epilepsy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Collaborations ────────────────────────────────────────── -->
+<section class="section alt">
+  <div class="wrap center">
+    <div class="eyebrow">Collaborations</div>
+    <h2 class="section-title">Scientific Partnerships</h2>
+    <p class="section-lead">Our research benefits from multi-institutional collaborations spanning neurosurgery, computational neuroscience, psychiatry, and biomedical engineering.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem;text-align:left;">
+      <div class="collab-card"><div class="collab-name">Dr. Helen Mayberg</div><div class="collab-inst">Mount Sinai · DBS, depression circuits, subcallosal cingulate</div></div>
+      <div class="collab-card"><div class="collab-name">Dr. Muhammad Parvaz</div><div class="collab-inst">Mount Sinai · Cognitive neuroscience, addiction neurology</div></div>
+      <div class="collab-card"><div class="collab-name">Dr. P. David Adelson</div><div class="collab-inst">WVU RNI · Pediatric neurosurgery, epilepsy surgery</div></div>
+      <div class="collab-card"><div class="collab-name">Dr. Kevin Morton</div><div class="collab-inst">WVU RNI · Epilepsy, transition-of-care</div></div>
+      <div class="collab-card"><div class="collab-name">Dr. Petra Konrad</div><div class="collab-inst">WVU · Neuromodulation, DBS</div></div>
+      <div class="collab-card"><div class="collab-name">Dr. Zheng</div><div class="collab-inst">WVU · Computational neuroscience</div></div>
+      <div class="collab-card"><div class="collab-name">NaviFUS / NaviFUS Inc.</div><div class="collab-inst">Taiwan · Focused ultrasound neuromodulation systems</div></div>
+      <div class="collab-card"><div class="collab-name">Starkey Hearing Technologies</div><div class="collab-inst">Minnesota · Digital biomarker platform, hearing AI</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Chan Lab</div>
+        <div class="footer-brand-sub">Neural Circuits &amp; Neurotechnology Laboratory<br>West Virginia University</div>
+        <div class="footer-addr">Rockefeller Neuroscience Institute · Department of Neurology<br>West Virginia University · Morgantown, WV 26506</div>
+      </div>
+      <div><div class="footer-col-head">Research</div><ul class="footer-links"><li><a href="#circuits">Brain Circuits</a></li><li><a href="#bci">Brain-Computer Interfaces</a></li><li><a href="#neuromod">Neuromodulation</a></li><li><a href="#neurodegeneration">Neurodegeneration</a></li></ul></div>
+      <div><div class="footer-col-head">Lab</div><ul class="footer-links"><li><a href="people.html">People</a></li><li><a href="publications.html">Publications</a></li><li><a href="technology.html">Technology</a></li><li><a href="clinical.html">Clinical</a></li></ul></div>
+      <div><div class="footer-col-head">Links</div><ul class="footer-links"><li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li><li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li><li><a href="studies.html">Studies</a></li><li><a href="support.html">Support the Lab</a></li><li><a href="join.html">Join Us</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Chan Lab, West Virginia University.</div>
+      <div class="footer-rni">Rockefeller Neuroscience Institute · WVU</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Our Research | Chan Lab | WVU</title>
+  <meta name="description" content="Support neuroscience and epilepsy research at West Virginia University. Philanthropy, directed gifts, and partnership opportunities at the Chan Lab.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Impact stats banner ── */
+    .impact-banner {
+      background: var(--navy);
+      border-radius: var(--r-xl);
+      padding: 3rem;
+      color: #fff;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin: 2.5rem 0;
+      text-align: center;
+    }
+    @media(max-width:720px){ .impact-banner { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:420px){ .impact-banner { grid-template-columns: 1fr; } }
+    .impact-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .impact-stat-label {
+      font-size: .82rem;
+      color: rgba(255,255,255,.72);
+      margin-top: .3rem;
+      line-height: 1.4;
+    }
+
+    /* ── Giving cards ── */
+    .giving-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    @media(max-width:800px){ .giving-grid { grid-template-columns: 1fr; } }
+
+    .giving-card {
+      border: 1.5px solid var(--divider);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .giving-card:hover {
+      box-shadow: 0 8px 28px rgba(0,45,98,.10);
+      transform: translateY(-2px);
+    }
+    .giving-card-top {
+      padding: 1.75rem;
+      flex: 1;
+    }
+    .giving-card-icon {
+      font-size: 2rem;
+      margin-bottom: .9rem;
+    }
+    .giving-card-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .6rem;
+    }
+    .giving-card-text {
+      font-size: .9rem;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+    .giving-card-foot {
+      background: var(--ghost);
+      border-top: 1px solid var(--divider);
+      padding: 1rem 1.75rem;
+    }
+    .giving-card-cta {
+      font-family: var(--font-display);
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .giving-card-cta:hover { text-decoration: underline; }
+
+    /* ── Use of funds section ── */
+    .fund-use-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    @media(max-width:600px){ .fund-use-grid { grid-template-columns: 1fr; } }
+    .fund-use-item {
+      background: #fff;
+      border: 1px solid var(--divider);
+      border-radius: var(--r-md);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .fund-use-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: .1rem;
+    }
+    .fund-use-content {}
+    .fund-use-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--navy);
+      margin-bottom: .3rem;
+    }
+    .fund-use-text {
+      font-size: .87rem;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    /* ── Quote/testimonial block ── */
+    .mission-quote {
+      background: linear-gradient(135deg, #f7f0e0 0%, #fef9ec 100%);
+      border: 1.5px solid #e8d89a;
+      border-left: 4px solid var(--gold);
+      border-radius: var(--r-lg);
+      padding: 2rem 2.5rem;
+      margin: 3rem 0;
+    }
+    .mission-quote-text {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--navy);
+      font-style: italic;
+      margin-bottom: .75rem;
+    }
+    .mission-quote-attr {
+      font-family: var(--font-display);
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Gift tiers ── */
+    .gift-tier-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+    }
+    .gift-tier-list li {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--divider);
+      align-items: start;
+    }
+    .gift-tier-list li:last-child { border-bottom: none; }
+    .gift-tier-amount {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy);
+    }
+    .gift-tier-impact {
+      font-size: .9rem;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">Chan Lab</span>
+      <span class="nav-brand-sub">WVU · Rockefeller Neuroscience Institute</span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="clinical.html">Clinical</a></li>
+      <li><a href="studies.html">Studies</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html" class="nav-support">Support</a></li>
+      <li><a href="join.html" class="nav-join">Join Us</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="page-hero-label">Philanthropy</div>
+    <h1 class="page-hero-title">Support Our<br>Research</h1>
+    <p class="page-hero-desc">
+      Federal grants fund the core of our work. Philanthropy funds the edges — the pilot studies, the equipment purchases, and the trainee stipends that make the next grant possible. Every gift to our lab has a direct path to patient impact.
+    </p>
+  </div>
+</header>
+
+<!-- ── Why it matters ─────────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+
+    <div class="mission-quote">
+      <div class="mission-quote-text">
+        "West Virginia has the highest rates of epilepsy in the United States. Most of our patients have never had access to a Level 4 Epilepsy Center before coming to WVU Medicine. The science we do here is not just abstract discovery — it is the direct response to a population that has been left out of modern neurology. Supporting this lab means supporting the people of West Virginia."
+      </div>
+      <div class="mission-quote-attr">Andy Chan, MD — Principal Investigator</div>
+    </div>
+
+    <!-- ── Impact numbers ── -->
+    <div class="eyebrow">Our Impact So Far</div>
+    <h2 class="section-title">Why Epilepsy Research at WVU Matters</h2>
+    <p class="section-lead">West Virginia faces a disproportionate burden of neurological disease. Your support helps us close the gap.</p>
+
+    <div class="impact-banner">
+      <div>
+        <div class="impact-stat-num">#1</div>
+        <div class="impact-stat-label">WV has the highest epilepsy prevalence rate in the United States</div>
+      </div>
+      <div>
+        <div class="impact-stat-num">50%</div>
+        <div class="impact-stat-label">of people with drug-resistant epilepsy also have clinical depression</div>
+      </div>
+      <div>
+        <div class="impact-stat-num">1 in 26</div>
+        <div class="impact-stat-label">Americans will develop epilepsy in their lifetime</div>
+      </div>
+      <div>
+        <div class="impact-stat-num">30%</div>
+        <div class="impact-stat-label">of epilepsy patients do not achieve seizure control with medications</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Ways to give ───────────────────────────────────────────── -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">Give Today</div>
+    <h2 class="section-title">Ways to Support the Lab</h2>
+    <p class="section-lead">All gifts to the Chan Lab are processed through the WVU Foundation, a 501(c)(3) organization. Gifts are tax-deductible to the fullest extent permitted by law.</p>
+
+    <div class="giving-grid">
+
+      <div class="giving-card">
+        <div class="giving-card-top">
+          <div class="giving-card-icon">💙</div>
+          <div class="giving-card-title">Directed Gift to Epilepsy Research</div>
+          <div class="giving-card-text">
+            Make a gift directly designated to the Chan Lab's epilepsy and neurotechnology research fund through the WVU Foundation. Gifts at any level are welcomed and can be one-time or recurring. Use the designation field to direct your gift to the "Neurology Epilepsy Research Fund" or contact us to set up a named fund.
+          </div>
+        </div>
+        <div class="giving-card-foot">
+          <a href="https://give.wvu.edu/" target="_blank" rel="noopener" class="giving-card-cta">Give via WVU Foundation →</a>
+        </div>
+      </div>
+
+      <div class="giving-card">
+        <div class="giving-card-top">
+          <div class="giving-card-icon">🎓</div>
+          <div class="giving-card-title">Trainee Stipend Support</div>
+          <div class="giving-card-text">
+            Help fund a medical student summer research fellowship, a resident research year, or a graduate student stipend supplement. Trainee support is one of the highest-leverage uses of philanthropic dollars — it directly funds the next generation of physician-scientists in West Virginia.
+          </div>
+        </div>
+        <div class="giving-card-foot">
+          <a href="mailto:andy.chan@hsc.wvu.edu?subject=Trainee Stipend Support Inquiry" class="giving-card-cta">Contact us to discuss →</a>
+        </div>
+      </div>
+
+      <div class="giving-card">
+        <div class="giving-card-top">
+          <div class="giving-card-icon">🔬</div>
+          <div class="giving-card-title">Equipment &amp; Pilot Study Funding</div>
+          <div class="giving-card-text">
+            Some of our most important work requires equipment that NIH grants don't cover — including bedside research devices, wearable sensor platforms, and data infrastructure. Pilot study funding through philanthropy also allows us to generate the preliminary data needed to compete for larger federal grants.
+          </div>
+        </div>
+        <div class="giving-card-foot">
+          <a href="mailto:andy.chan@hsc.wvu.edu?subject=Equipment or Pilot Study Funding" class="giving-card-cta">Contact us to discuss →</a>
+        </div>
+      </div>
+
+      <div class="giving-card">
+        <div class="giving-card-top">
+          <div class="giving-card-icon">🌍</div>
+          <div class="giving-card-title">Community Outreach &amp; Access Programs</div>
+          <div class="giving-card-text">
+            We are developing community-facing programs to improve epilepsy awareness, telehealth access, and care coordination for patients in rural Appalachian West Virginia. These programs sit outside the scope of our federal grants but are central to our mission.
+          </div>
+        </div>
+        <div class="giving-card-foot">
+          <a href="mailto:andy.chan@hsc.wvu.edu?subject=Community Outreach Funding" class="giving-card-cta">Contact us to discuss →</a>
+        </div>
+      </div>
+
+      <div class="giving-card">
+        <div class="giving-card-top">
+          <div class="giving-card-icon">🏢</div>
+          <div class="giving-card-title">Industry Partnership &amp; Sponsored Research</div>
+          <div class="giving-card-text">
+            Companies developing neurotechnology, medical devices, or digital health platforms can partner with us through sponsored research agreements, materials transfer agreements, and co-development arrangements. WVU's Office of Technology Transfer supports all industry partnership structures.
+          </div>
+        </div>
+        <div class="giving-card-foot">
+          <a href="join.html#industry" class="giving-card-cta">Industry partnership details →</a>
+        </div>
+      </div>
+
+      <div class="giving-card">
+        <div class="giving-card-top">
+          <div class="giving-card-icon">🏛️</div>
+          <div class="giving-card-title">Estate &amp; Planned Giving</div>
+          <div class="giving-card-text">
+            Consider including WVU's neuroscience research program in your estate plans. Planned gifts — including bequests, charitable trusts, and beneficiary designations — can have a transformative, lasting impact on neurological disease research in West Virginia. The WVU Foundation can provide guidance on all planned giving vehicles.
+          </div>
+        </div>
+        <div class="giving-card-foot">
+          <a href="https://foundation.wvu.edu/" target="_blank" rel="noopener" class="giving-card-cta">WVU Foundation planned giving →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── How funds are used ─────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Transparency</div>
+    <h2 class="section-title">How Philanthropic Dollars Are Used</h2>
+    <p class="section-lead">
+      Philanthropic support fills gaps that federal grants cannot. Here is how unrestricted gifts to the lab are typically allocated.
+    </p>
+
+    <div class="fund-use-grid">
+      <div class="fund-use-item">
+        <div class="fund-use-icon">🧑‍🎓</div>
+        <div class="fund-use-content">
+          <div class="fund-use-title">Medical Student Fellowships</div>
+          <div class="fund-use-text">Summer and year-long fellowships for WVU medical students entering research, typically $3,000–$6,000 per student per summer. These are the investments that produce the next generation of clinician-scientists.</div>
+        </div>
+      </div>
+      <div class="fund-use-item">
+        <div class="fund-use-icon">🛠️</div>
+        <div class="fund-use-content">
+          <div class="fund-use-title">Research Equipment</div>
+          <div class="fund-use-text">Bench and bedside research devices not covered under NIH direct costs, including wearable sensors, EEG amplifiers, and data acquisition hardware for the epilepsy monitoring unit.</div>
+        </div>
+      </div>
+      <div class="fund-use-item">
+        <div class="fund-use-icon">✈️</div>
+        <div class="fund-use-content">
+          <div class="fund-use-title">Conference Travel</div>
+          <div class="fund-use-text">Travel support for trainees and junior lab members presenting at the American Epilepsy Society, Society for Neuroscience, NeurIPS, and other national meetings. Presentations are essential for career development and scientific dissemination.</div>
+        </div>
+      </div>
+      <div class="fund-use-item">
+        <div class="fund-use-icon">🧪</div>
+        <div class="fund-use-content">
+          <div class="fund-use-title">Pilot Studies</div>
+          <div class="fund-use-text">Small-scale feasibility studies that generate the preliminary data needed to apply for NIH R01 and R21 grants. Pilot funding is often the critical difference between a competitive and non-competitive federal application.</div>
+        </div>
+      </div>
+      <div class="fund-use-item">
+        <div class="fund-use-icon">📣</div>
+        <div class="fund-use-content">
+          <div class="fund-use-title">Community Outreach</div>
+          <div class="fund-use-text">Patient education materials, epilepsy awareness events, and telehealth outreach programs for rural West Virginia communities who lack access to subspecialty epilepsy care.</div>
+        </div>
+      </div>
+      <div class="fund-use-item">
+        <div class="fund-use-icon">📚</div>
+        <div class="fund-use-content">
+          <div class="fund-use-title">Open Access Publication</div>
+          <div class="fund-use-text">Article Processing Charges (APCs) for open-access publication ensure that our scientific findings are freely available to clinicians, researchers, patients, and the public — not locked behind journal paywalls.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- gift tiers -->
+    <div style="max-width:680px;margin:3rem auto 0;background:#fff;border:1px solid var(--divider);border-radius:var(--r-xl);padding:2rem 2.5rem;">
+      <div class="eyebrow" style="margin-bottom:.5rem;">Giving Levels</div>
+      <h3 style="font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:.25rem;">What Your Gift Funds</h3>
+      <p style="font-size:.88rem;color:var(--muted);margin-bottom:.5rem;">Approximate examples of philanthropic impact at each level.</p>
+      <ul class="gift-tier-list">
+        <li>
+          <div class="gift-tier-amount">$250</div>
+          <div class="gift-tier-impact">Covers open-access publication fees for one research paper, making our findings freely available worldwide.</div>
+        </li>
+        <li>
+          <div class="gift-tier-amount">$1,000</div>
+          <div class="gift-tier-impact">Funds conference travel for a medical student or resident presenting research at the American Epilepsy Society annual meeting.</div>
+        </li>
+        <li>
+          <div class="gift-tier-amount">$5,000</div>
+          <div class="gift-tier-impact">Supports a medical student summer research fellowship — 10 weeks of dedicated research time producing a manuscript or abstract.</div>
+        </li>
+        <li>
+          <div class="gift-tier-amount">$10,000</div>
+          <div class="gift-tier-impact">Funds a pilot study from IRB submission through data collection and analysis — generating the preliminary data that powers our next NIH application.</div>
+        </li>
+        <li>
+          <div class="gift-tier-amount">$25,000+</div>
+          <div class="gift-tier-impact">Endows a named trainee fellowship, funds a major equipment purchase for the epilepsy monitoring unit, or launches a community outreach initiative. Contact us to discuss naming and recognition opportunities.</div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Contact for major gifts ─────────────────────────────────── -->
+<section class="section alt">
+  <div class="wrap">
+    <div style="background:var(--navy);border-radius:var(--r-xl);padding:3rem;color:#fff;display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center;">
+      <style>@media(max-width:600px){.support-cta-grid{grid-template-columns:1fr!important;}}</style>
+      <div class="support-cta-grid" style="display:contents;">
+        <div>
+          <div style="font-family:var(--font-display);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;">Contact Us</div>
+          <div style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:.75rem;">Questions About Giving?</div>
+          <div style="font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.8);">
+            For major gifts, named fund discussions, or questions about how your contribution would be used, please contact Andy directly. We are grateful for every expression of support and will respond personally to all serious inquiries.
+          </div>
+          <div style="margin-top:1.25rem;font-size:.88rem;color:rgba(255,255,255,.65);">
+            All gifts processed through the WVU Foundation, a registered 501(c)(3) · EIN: 31-0684726
+          </div>
+        </div>
+        <div style="flex-shrink:0;text-align:center;">
+          <a href="mailto:andy.chan@hsc.wvu.edu?subject=Philanthropic Support Inquiry" class="btn" style="background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700;display:block;margin-bottom:.75rem;white-space:nowrap;">Email Andy</a>
+          <a href="https://give.wvu.edu/" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:#fff;white-space:nowrap;">WVU Foundation →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Current funders (Bridi-style) ──────────────────────────── -->
+<section class="section" style="padding-top:2rem;padding-bottom:3rem;">
+  <div class="wrap center">
+    <div class="eyebrow" style="margin-bottom:.5rem;">Proudly Supported By</div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.75rem;">Current funding sources supporting Chan Lab research.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;">
+      <a href="https://www.nimh.nih.gov/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">NIH</span>
+        <span class="funder-pill-name">National Institute of Mental Health</span>
+      </a>
+      <a href="https://www.ninds.nih.gov/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">NIH</span>
+        <span class="funder-pill-name">NINDS</span>
+      </a>
+      <a href="https://www.nsf.gov/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">NSF</span>
+        <span class="funder-pill-name">IUCRC BRAIN Center</span>
+      </a>
+      <a href="https://www.fusfoundation.org/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">FUS</span>
+        <span class="funder-pill-name">Focused Ultrasound Foundation</span>
+      </a>
+      <a href="https://wvuctsi.org/" target="_blank" rel="noopener" class="funder-pill">
+        <span class="funder-pill-agency">WVU</span>
+        <span class="funder-pill-name">Clinical &amp; Translational Science Institute</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">Chan Lab</div><div class="footer-brand-sub">Neural Circuits &amp; Neurotechnology Laboratory<br>West Virginia University</div><div class="footer-addr">Rockefeller Neuroscience Institute · Department of Neurology<br>West Virginia University · Morgantown, WV 26506</div></div>
+      <div><div class="footer-col-head">Research</div><ul class="footer-links"><li><a href="research.html#circuits">Brain Circuits</a></li><li><a href="research.html#bci">BCI</a></li><li><a href="research.html#neuromod">Neuromodulation</a></li><li><a href="research.html#neurodegeneration">Neurodegeneration</a></li></ul></div>
+      <div><div class="footer-col-head">Lab</div><ul class="footer-links"><li><a href="people.html">People</a></li><li><a href="publications.html">Publications</a></li><li><a href="technology.html">Technology</a></li><li><a href="clinical.html">Clinical</a></li><li><a href="studies.html">Studies</a></li></ul></div>
+      <div><div class="footer-col-head">Links</div><ul class="footer-links"><li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li><li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li><li><a href="support.html">Support the Lab</a></li><li><a href="join.html">Join Us</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ho+Wing+Chan+epilepsy" target="_blank" rel="noopener">PubMed</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Chan Lab, West Virginia University.</div>
+      <div class="footer-rni">Rockefeller Neuroscience Institute · WVU</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

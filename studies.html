@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ongoing Studies | Chan Lab | WVU</title>
+  <meta name="description" content="Ongoing clinical studies and research trials at the Chan Lab, WVU. Learn how you or a patient may be eligible to participate in epilepsy and neurotechnology research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Status badge ── */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .25rem .7rem;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .status-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-open   { background: #d4edda; color: #15693e; }
+    .status-open::before { background: #15693e; }
+    .status-early  { background: #d0e8f9; color: #1B6DB8; }
+    .status-early::before { background: #1B6DB8; }
+    .status-dev    { background: #fef3cd; color: #b8860b; }
+    .status-dev::before { background: #b8860b; animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .status-coming { background: #ead8f5; color: #5a1a80; }
+    .status-coming::before { background: #5a1a80; }
+
+    /* ── Study card ── */
+    .study-card {
+      background: #fff;
+      border: 1px solid var(--divider);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .study-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: start;
+      gap: 1.5rem;
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid var(--divider);
+      flex-wrap: wrap;
+    }
+    @media(max-width:640px) {
+      .study-header { grid-template-columns: 1fr; gap: .75rem; }
+    }
+    .study-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--divider);
+      line-height: 1;
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .study-header-main { min-width: 0; }
+    .study-id {
+      font-family: var(--font-display);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .3rem;
+    }
+    .study-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: .4rem;
+    }
+    .study-short {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .study-body {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media(max-width:720px) { .study-body { grid-template-columns: 1fr; } }
+
+    .study-section-label {
+      font-family: var(--font-display);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .6rem;
+    }
+    .study-text {
+      font-size: .92rem;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+    .study-criteria-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .study-criteria-list li {
+      font-size: .9rem;
+      line-height: 1.55;
+      color: var(--ink);
+      padding: .4rem 0 .4rem 1.4rem;
+      position: relative;
+      border-bottom: 1px solid var(--divider);
+    }
+    .study-criteria-list li:last-child { border-bottom: none; }
+    .study-criteria-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #15693e;
+      font-weight: 700;
+      font-size: .85rem;
+    }
+    .study-criteria-list li.exclude::before {
+      content: '✕';
+      color: #c0392b;
+    }
+    .study-footer {
+      background: var(--ghost);
+      border-top: 1px solid var(--divider);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .study-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .study-meta-item { }
+    .study-meta-label {
+      font-family: var(--font-display);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .study-meta-value {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* ── Patient CTA banner ── */
+    .patient-cta {
+      background: linear-gradient(135deg, #002D62 0%, #1B6DB8 100%);
+      border-radius: var(--r-xl);
+      padding: 2.5rem 3rem;
+      color: #fff;
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    @media(max-width:600px) { .patient-cta { grid-template-columns: 1fr; } }
+    .patient-cta-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .5rem;
+    }
+    .patient-cta-text {
+      font-size: .95rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* ── Referring providers box ── */
+    .provider-box {
+      background: #fff;
+      border: 1.5px solid var(--divider);
+      border-left: 4px solid var(--gold);
+      border-radius: var(--r-lg);
+      padding: 1.75rem 2rem;
+      margin-top: 2.5rem;
+    }
+    .provider-box-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: .6rem;
+    }
+    .provider-box-text {
+      font-size: .9rem;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">Chan Lab</span>
+      <span class="nav-brand-sub">WVU · Rockefeller Neuroscience Institute</span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="clinical.html">Clinical</a></li>
+      <li><a href="studies.html">Studies</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html" class="nav-support">Support</a></li>
+      <li><a href="join.html" class="nav-join">Join Us</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="page-hero-label">Research Participation</div>
+    <h1 class="page-hero-title">Ongoing Studies<br>&amp; Clinical Trials</h1>
+    <p class="page-hero-desc">
+      Our research moves from questions to answers only with the help of patients and volunteers willing to participate. Below are our currently active and developing studies. If you or someone you care for might be eligible, we want to hear from you.
+    </p>
+  </div>
+</header>
+
+<!-- ── Patient CTA ────────────────────────────────────────────── -->
+<section class="section" style="padding-bottom:1rem;">
+  <div class="wrap">
+    <div class="patient-cta">
+      <div>
+        <div class="patient-cta-title">Not sure if you qualify? Ask us.</div>
+        <div class="patient-cta-text">Eligibility criteria can be complex. If you have questions about whether you or a patient may qualify for any of our studies, the simplest step is to email us or ask your neurologist to contact us directly. We will review your situation confidentially and get back to you promptly.</div>
+      </div>
+      <div style="flex-shrink:0;">
+        <a href="mailto:andy.chan@hsc.wvu.edu?subject=Research Participation Inquiry" class="btn" style="background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700;white-space:nowrap;">Email the Lab</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Studies ────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+
+    <div class="eyebrow">Active Studies</div>
+    <h2 class="section-title">Current Research Protocols</h2>
+    <p class="section-lead">We have four active or developing research protocols at WVU. Two are currently enrolling participants.</p>
+
+    <!-- ── Study 001 ── -->
+    <div class="study-card" id="study-seeg-depression">
+      <div class="study-header">
+        <div class="study-number">01</div>
+        <div class="study-header-main">
+          <div class="study-id">Study CHAN-001 · NIMH K23</div>
+          <div class="study-title">Depression Biomarkers in Epilepsy: Intracranial EEG Study</div>
+          <div class="study-short">Understanding the brain circuit patterns that underlie depression in people with drug-resistant epilepsy.</div>
+        </div>
+        <div style="flex-shrink:0;"><span class="status-badge status-open">Enrolling</span></div>
+      </div>
+      <div class="study-body">
+        <div>
+          <div class="study-section-label">What is this study about?</div>
+          <div class="study-text">
+            Depression affects nearly half of all people with drug-resistant epilepsy. It has a larger impact on quality of life than seizure frequency in many patients, yet it remains poorly understood and frequently undertreated. This study aims to identify specific brain circuit patterns in the frontal and limbic regions that are associated with depression in epilepsy — patterns that could eventually be used to guide treatment.
+          </div>
+          <div class="study-text" style="margin-top:.9rem;">
+            We record electrical signals directly from brain regions already implanted with electrodes as part of your standard epilepsy evaluation. We then combine those signals with validated questionnaire data about mood to look for patterns that distinguish patients with depression from those without.
+          </div>
+        </div>
+        <div>
+          <div class="study-section-label">Who can participate?</div>
+          <ul class="study-criteria-list">
+            <li>Age 18 or older</li>
+            <li>Diagnosed with focal epilepsy that has not responded to at least 2 antiseizure medications</li>
+            <li>Already scheduled for or undergoing SEEG (stereo-EEG) evaluation at WVU Medicine as part of standard clinical care</li>
+            <li>Able to give written informed consent</li>
+            <li>English language proficiency sufficient to complete questionnaires</li>
+            <li class="exclude">History of prior brain surgery (other than a previous SEEG evaluation)</li>
+            <li class="exclude">Active psychosis or severe cognitive impairment that would prevent questionnaire completion</li>
+          </ul>
+        </div>
+      </div>
+      <div class="study-body" style="padding-top:0;border-top:1px solid var(--divider);">
+        <div>
+          <div class="study-section-label">What does participation involve?</div>
+          <div class="study-text">
+            Participation happens entirely during your hospitalization for the SEEG evaluation — no extra clinic visits are required. We ask permission to record additional channels from electrodes that are already implanted as part of your standard clinical care. You will also complete a set of short questionnaires about mood and quality of life that take approximately 30 minutes total. Your clinical care team makes all decisions about implant location and monitoring independently of the research team.
+          </div>
+        </div>
+        <div>
+          <div class="study-section-label">Is there any risk?</div>
+          <div class="study-text">
+            The research electrodes used in this study are placed by the neurosurgery team within the same implantation procedure as your clinical electrodes. The small number of additional research contacts adds minimal procedural time and negligible additional risk beyond the standard clinical SEEG procedure. Participation is entirely voluntary and will not affect the quality or nature of your clinical epilepsy care.
+          </div>
+        </div>
+      </div>
+      <div class="study-footer">
+        <div class="study-meta-row">
+          <div class="study-meta-item"><div class="study-meta-label">Funded by</div><div class="study-meta-value">NIMH K23 (KMH147414A)</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">Time commitment</div><div class="study-meta-value">During hospitalization only</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">Compensation</div><div class="study-meta-value">Available — ask at enrollment</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">IRB</div><div class="study-meta-value">WVU IRB approved</div></div>
+        </div>
+        <a href="mailto:andy.chan@hsc.wvu.edu?subject=Study CHAN-001 Interest" class="btn btn-navy btn-sm">Express Interest</a>
+      </div>
+    </div>
+
+    <!-- ── Study 002 ── -->
+    <div class="study-card" id="study-ar-bci">
+      <div class="study-header">
+        <div class="study-number">02</div>
+        <div class="study-header-main">
+          <div class="study-id">Study CHAN-002 · NSF IUCRC BRAIN</div>
+          <div class="study-title">Augmented Reality Brain-Computer Interface for Aphasia</div>
+          <div class="study-short">Testing a new approach to speech rehabilitation using an AR headset and non-invasive brain signals.</div>
+        </div>
+        <div style="flex-shrink:0;"><span class="status-badge status-early">Early Enrollment</span></div>
+      </div>
+      <div class="study-body">
+        <div>
+          <div class="study-section-label">What is this study about?</div>
+          <div class="study-text">
+            Aphasia is a language disorder that results from brain injury, most commonly stroke, traumatic brain injury, or brain tumor surgery. People with aphasia often struggle to speak, read, write, or understand language, even when their thinking is intact. This study is testing whether an augmented reality brain-computer interface — a headset that overlays digital information onto your environment and reads brain signals — can help people with aphasia communicate and participate in speech therapy more effectively.
+          </div>
+          <div class="study-text" style="margin-top:.9rem;">
+            We use the Cognixion Axon-R AR headset combined with non-invasive EEG electrodes that sit on the scalp. No surgery or implanted devices are required.
+          </div>
+        </div>
+        <div>
+          <div class="study-section-label">Who can participate?</div>
+          <ul class="study-criteria-list">
+            <li>Age 18 or older</li>
+            <li>Diagnosis of aphasia following stroke, traumatic brain injury, or brain tumor surgery</li>
+            <li>At least 3 months post-injury (neurological condition stable)</li>
+            <li>Able to tolerate wearing a lightweight AR headset for up to 1 hour</li>
+            <li>Able to travel to WVU Medicine in Morgantown for study visits</li>
+            <li>A care partner or family member is encouraged but not required to attend</li>
+            <li class="exclude">Active seizure disorder not under evaluation (must be cleared by neurology)</li>
+            <li class="exclude">History of photosensitive epilepsy or seizures triggered by visual stimuli</li>
+            <li class="exclude">Significant visual impairment preventing AR device use</li>
+          </ul>
+        </div>
+      </div>
+      <div class="study-body" style="padding-top:0;border-top:1px solid var(--divider);">
+        <div>
+          <div class="study-section-label">What does participation involve?</div>
+          <div class="study-text">
+            Participation involves 2 to 4 study visits at WVU Medicine, each lasting approximately 2 hours. During each visit, you will wear the AR headset and EEG cap while completing speech and language tasks on a screen visible through the headset. Our speech-language pathology collaborators will guide each session. We will record brain signals during tasks and measure your performance. There are no medications, injections, or invasive procedures.
+          </div>
+        </div>
+        <div>
+          <div class="study-section-label">Is there any risk?</div>
+          <div class="study-text">
+            This study uses only non-invasive equipment. The AR headset and scalp EEG electrodes pose no known health risks. Some participants may experience mild fatigue or eye strain from extended AR headset use; sessions are paced to minimize this. Participation will not affect your ongoing speech therapy or medical care.
+          </div>
+        </div>
+      </div>
+      <div class="study-footer">
+        <div class="study-meta-row">
+          <div class="study-meta-item"><div class="study-meta-label">Funded by</div><div class="study-meta-value">NSF IUCRC BRAIN Center</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">Visits</div><div class="study-meta-value">2–4 visits (~2 hrs each)</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">Compensation</div><div class="study-meta-value">Available — ask at enrollment</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">IRB</div><div class="study-meta-value">WVU IRB approved</div></div>
+        </div>
+        <a href="mailto:andy.chan@hsc.wvu.edu?subject=Study CHAN-002 Interest" class="btn btn-navy btn-sm">Express Interest</a>
+      </div>
+    </div>
+
+    <!-- ── Study 003 ── -->
+    <div class="study-card" id="study-hearing-biomarker">
+      <div class="study-header">
+        <div class="study-number">03</div>
+        <div class="study-header-main">
+          <div class="study-id">Study CHAN-003 · Protocol Development</div>
+          <div class="study-title">Hearing Aid Sensor Data as Digital Biomarkers for Neurological Disease</div>
+          <div class="study-short">Exploring whether passive data from commercial hearing aids can detect early signs of neurological decline.</div>
+        </div>
+        <div style="flex-shrink:0;"><span class="status-badge status-dev">Developing</span></div>
+      </div>
+      <div class="study-body">
+        <div>
+          <div class="study-section-label">What is this study about?</div>
+          <div class="study-text">
+            Modern hearing aids do far more than amplify sound. They continuously track acoustic environments, step counts, movement patterns, and fall events. This study asks whether that passive behavioral data, captured invisibly during everyday life, can detect early signs of neurological decline — including Alzheimer's disease and other dementias — before traditional clinical tests do.
+          </div>
+          <div class="study-text" style="margin-top:.9rem;">
+            This is an observational study. We review existing hearing aid data with your permission, compare it to standard clinical assessments, and look for patterns that differ between people with and without a neurological diagnosis. Developed in partnership with Starkey Hearing Technologies.
+          </div>
+        </div>
+        <div>
+          <div class="study-section-label">Who may be eligible? (Pre-registration)</div>
+          <ul class="study-criteria-list">
+            <li>Age 50 or older</li>
+            <li>Current user of Starkey hearing aids with data logging enabled</li>
+            <li>With or without a neurological diagnosis (both groups needed)</li>
+            <li>Willing to share anonymized hearing aid sensor data with the research team</li>
+            <li>Able to complete standard cognitive screening tools (approximately 30 minutes)</li>
+          </ul>
+          <div style="margin-top:1rem;padding:.75rem 1rem;background:var(--ghost);border-radius:var(--r-md);font-size:.82rem;color:var(--muted);">
+            This study is not yet open for enrollment. If you are interested in participating when it opens, contact us to be placed on a pre-registration list.
+          </div>
+        </div>
+      </div>
+      <div class="study-footer">
+        <div class="study-meta-row">
+          <div class="study-meta-item"><div class="study-meta-label">Industry partner</div><div class="study-meta-value">Starkey Hearing Technologies</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">Design</div><div class="study-meta-value">Retrospective observational</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">IRB Status</div><div class="study-meta-value">Protocol development</div></div>
+        </div>
+        <a href="mailto:andy.chan@hsc.wvu.edu?subject=Study CHAN-003 Pre-registration" class="btn btn-border btn-sm">Pre-register Interest</a>
+      </div>
+    </div>
+
+    <!-- ── Study 004 ── -->
+    <div class="study-card" id="study-focus-ultrasound">
+      <div class="study-header">
+        <div class="study-number">04</div>
+        <div class="study-header-main">
+          <div class="study-id">Study CHAN-004 · Coming Soon</div>
+          <div class="study-title">Focused Ultrasound Effects on Human Brain Circuits in Epilepsy</div>
+          <div class="study-short">Using low-intensity sound waves to modulate specific brain circuits — measured in real time using intracranial electrodes.</div>
+        </div>
+        <div style="flex-shrink:0;"><span class="status-badge status-coming">Coming Soon</span></div>
+      </div>
+      <div class="study-body">
+        <div>
+          <div class="study-section-label">What will this study be about?</div>
+          <div class="study-text">
+            Low-intensity focused ultrasound (LIFU) is an experimental technology that uses carefully directed sound waves — inaudible to the human ear — to temporarily and non-destructively influence brain activity. Unlike deep brain stimulation or radiosurgery, LIFU does not require surgery and leaves no permanent hardware behind.
+          </div>
+          <div class="study-text" style="margin-top:.9rem;">
+            This planned study will apply LIFU to specific brain targets in patients who are already hospitalized for SEEG evaluation, then measure how their brain's electrical activity changes in real time using the intracranial electrodes already in place. We are working toward an FDA investigational device exemption (IDE) and Focused Ultrasound Foundation grant funding to launch this study.
+          </div>
+        </div>
+        <div>
+          <div class="study-section-label">Who may be eligible in the future?</div>
+          <ul class="study-criteria-list">
+            <li>Age 18 or older</li>
+            <li>Undergoing SEEG evaluation for drug-resistant focal epilepsy at WVU Medicine</li>
+            <li>SEEG implant targeting frontal or anterior temporal lobe structures (per clinical plan)</li>
+            <li>No contraindications to ultrasound exposure (e.g., implanted metal near ultrasound target)</li>
+          </ul>
+          <div style="margin-top:1rem;padding:.75rem 1rem;background:var(--ghost);border-radius:var(--r-md);font-size:.82rem;color:var(--muted);">
+            This study is not yet open. Regulatory approval (IDE) and funding are pending. Contact us if you would like to be notified when enrollment opens.
+          </div>
+        </div>
+      </div>
+      <div class="study-footer">
+        <div class="study-meta-row">
+          <div class="study-meta-item"><div class="study-meta-label">Technology</div><div class="study-meta-value">NaviFUS LIFU System</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">Funding LOI</div><div class="study-meta-value">Focused Ultrasound Foundation</div></div>
+          <div class="study-meta-item"><div class="study-meta-label">Regulatory pathway</div><div class="study-meta-value">FDA IDE (in progress)</div></div>
+        </div>
+        <a href="mailto:andy.chan@hsc.wvu.edu?subject=Study CHAN-004 Notification Request" class="btn btn-border btn-sm">Notify Me When Open</a>
+      </div>
+    </div>
+
+    <!-- ── Referring providers ── -->
+    <div class="provider-box">
+      <div class="provider-box-title">For Referring Providers and Neurologists</div>
+      <div class="provider-box-text">
+        If you have a patient who may be eligible for one of our studies, please contact us directly at <a href="mailto:andy.chan@hsc.wvu.edu" style="color:var(--blue);font-weight:600;">andy.chan@hsc.wvu.edu</a> with a brief summary of the patient's diagnosis and current situation. We will review eligibility and coordinate directly with you. We are particularly interested in patients already referred to the WVU epilepsy monitoring unit who may be eligible for Study 001 (SEEG Depression Biomarker Study), and outpatients with post-stroke aphasia who may be eligible for Study 002 (AR-BCI). We can provide referral letters and IRB participant information sheets on request.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────────── -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">Common Questions</div>
+    <h2 class="section-title">What Research Participation Involves</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;">
+      <style>@media(max-width:600px){.faq-grid{grid-template-columns:1fr!important;}}</style>
+      <div class="faq-grid" style="display:contents;">
+        <div style="background:#fff;border:1px solid var(--divider);border-radius:var(--r-lg);padding:1.5rem;">
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.5rem;">Will participating affect my clinical care?</div>
+          <div style="font-size:.9rem;line-height:1.65;color:var(--ink);">No. Your epilepsy care is managed independently of the research team. Clinical decisions — including which electrodes to place, how long to monitor, and when to pursue surgery — are made entirely by your clinical team without any research influence.</div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--divider);border-radius:var(--r-lg);padding:1.5rem;">
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.5rem;">Can I withdraw at any time?</div>
+          <div style="font-size:.9rem;line-height:1.65;color:var(--ink);">Yes. Participation is completely voluntary. You can withdraw from any study at any time without explanation and without any effect on your medical care, insurance, or relationship with WVU Medicine.</div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--divider);border-radius:var(--r-lg);padding:1.5rem;">
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.5rem;">Will I receive my research results?</div>
+          <div style="font-size:.9rem;line-height:1.65;color:var(--ink);">For most studies, individual-level research data is not returned as it is exploratory and not validated for clinical use. If we discover findings with direct clinical relevance for a participant, we will discuss that with the clinical team. Group-level findings are published and shared publicly.</div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--divider);border-radius:var(--r-lg);padding:1.5rem;">
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.5rem;">Is my data kept private?</div>
+          <div style="font-size:.9rem;line-height:1.65;color:var(--ink);">All study data is de-identified before analysis and stored on secure, encrypted WVU servers. Only members of the research team with IRB approval can access identifiable information. We comply with HIPAA and federal research privacy regulations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">Chan Lab</div><div class="footer-brand-sub">Neural Circuits &amp; Neurotechnology Laboratory<br>West Virginia University</div><div class="footer-addr">Rockefeller Neuroscience Institute · Department of Neurology<br>West Virginia University · Morgantown, WV 26506</div></div>
+      <div><div class="footer-col-head">Research</div><ul class="footer-links"><li><a href="research.html#circuits">Brain Circuits</a></li><li><a href="research.html#bci">BCI</a></li><li><a href="research.html#neuromod">Neuromodulation</a></li><li><a href="research.html#neurodegeneration">Neurodegeneration</a></li></ul></div>
+      <div><div class="footer-col-head">Lab</div><ul class="footer-links"><li><a href="people.html">People</a></li><li><a href="publications.html">Publications</a></li><li><a href="technology.html">Technology</a></li><li><a href="clinical.html">Clinical</a></li><li><a href="studies.html">Studies</a></li></ul></div>
+      <div><div class="footer-col-head">Links</div><ul class="footer-links"><li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li><li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li><li><a href="support.html">Support the Lab</a></li><li><a href="join.html">Join Us</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ho+Wing+Chan+epilepsy" target="_blank" rel="noopener">PubMed</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Chan Lab, West Virginia University.</div>
+      <div class="footer-rni">Rockefeller Neuroscience Institute · WVU</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

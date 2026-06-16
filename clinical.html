@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinical Translation | Chan Lab | WVU</title>
+  <meta name="description" content="Clinical research program at the Chan Lab: epilepsy surgery, surgical neuromodulation, depression biomarkers, and precision medicine in Appalachia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .clin-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2.5rem; }
+    @media(max-width:700px){ .clin-grid { grid-template-columns:1fr; } }
+
+    .clin-card {
+      background:#fff;
+      border:1px solid var(--divider);
+      border-radius:var(--r-lg);
+      padding:2rem;
+      position:relative;
+      overflow:hidden;
+      transition:box-shadow .2s;
+    }
+    .clin-card:hover { box-shadow:0 8px 32px rgba(0,45,98,.10); }
+    .clin-card::before {
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height:4px;
+      background:var(--blue);
+    }
+    .clin-card-num {
+      font-family:var(--font-display);
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--blue);
+      margin-bottom:.6rem;
+    }
+    .clin-card-title {
+      font-family:var(--font-display);
+      font-size:1.25rem;
+      font-weight:700;
+      color:var(--navy);
+      margin-bottom:.8rem;
+    }
+    .clin-card-text {
+      font-size:.95rem;
+      line-height:1.7;
+      color:var(--ink);
+      margin-bottom:1rem;
+    }
+    .clin-tag-list {
+      display:flex;
+      flex-wrap:wrap;
+      gap:.4rem;
+      margin-top:.75rem;
+    }
+    .clin-tag {
+      background:var(--ghost);
+      border:1px solid var(--divider);
+      border-radius:999px;
+      padding:.2rem .7rem;
+      font-size:.78rem;
+      font-weight:500;
+      color:var(--navy);
+    }
+
+    .differentiator-block {
+      background:var(--navy);
+      color:#fff;
+      border-radius:var(--r-xl);
+      padding:3rem;
+      margin:3rem 0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:3rem;
+      align-items:center;
+    }
+    @media(max-width:700px){ .differentiator-block { grid-template-columns:1fr; padding:2rem; gap:1.5rem; } }
+    .differentiator-label {
+      font-family:var(--font-display);
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:.75rem;
+    }
+    .differentiator-title {
+      font-family:var(--font-display);
+      font-size:1.75rem;
+      font-weight:700;
+      color:#fff;
+      line-height:1.2;
+      margin-bottom:1rem;
+    }
+    .differentiator-text {
+      font-size:.95rem;
+      line-height:1.75;
+      color:rgba(255,255,255,.8);
+    }
+    .differentiator-stats {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1.5rem;
+    }
+    .diff-stat-num {
+      font-family:var(--font-display);
+      font-size:2.5rem;
+      font-weight:700;
+      color:var(--gold);
+      line-height:1;
+    }
+    .diff-stat-label {
+      font-size:.85rem;
+      color:rgba(255,255,255,.75);
+      margin-top:.3rem;
+    }
+
+    .pathway-list {
+      list-style:none;
+      padding:0;
+      margin:1.25rem 0 0;
+    }
+    .pathway-list li {
+      padding:.6rem 0 .6rem 1.5rem;
+      position:relative;
+      border-bottom:1px solid var(--divider);
+      font-size:.95rem;
+      color:var(--ink);
+      line-height:1.5;
+    }
+    .pathway-list li:last-child { border-bottom:none; }
+    .pathway-list li::before {
+      content:'';
+      position:absolute;
+      left:0; top:50%;
+      transform:translateY(-50%);
+      width:8px; height:8px;
+      border-radius:50%;
+      background:var(--blue);
+    }
+
+    .appalachia-banner {
+      background:linear-gradient(135deg, #f0f4fa 0%, #e8eff9 100%);
+      border:1px solid var(--divider);
+      border-left:4px solid var(--gold);
+      border-radius:var(--r-lg);
+      padding:2rem 2.25rem;
+      margin-top:2rem;
+    }
+    .appalachia-banner-title {
+      font-family:var(--font-display);
+      font-size:1.1rem;
+      font-weight:700;
+      color:var(--navy);
+      margin-bottom:.6rem;
+    }
+    .appalachia-banner-text {
+      font-size:.95rem;
+      line-height:1.7;
+      color:var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">Chan Lab</span>
+      <span class="nav-brand-sub">WVU · Rockefeller Neuroscience Institute</span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="clinical.html">Clinical</a></li>
+      <li><a href="studies.html">Studies</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html" class="nav-support">Support</a></li>
+      <li><a href="join.html" class="nav-join">Join Us</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="page-hero-label">Clinical Translation</div>
+    <h1 class="page-hero-title">From Circuit Insights<br>to Clinical Outcomes</h1>
+    <p class="page-hero-desc">
+      Direct access to a comprehensive epilepsy surgery program is what separates our lab from most computational neuroscience groups. Our research runs in both directions: clinical care generates scientific questions, and basic discoveries return to the bedside.
+    </p>
+  </div>
+</header>
+
+<!-- ── Differentiator block ──────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+
+    <div class="differentiator-block">
+      <div>
+        <div class="differentiator-label">Our Competitive Advantage</div>
+        <div class="differentiator-title">Clinical Access Most BCI Labs Don't Have</div>
+        <div class="differentiator-text">
+          Many BCI and computational neuroscience labs work with archived datasets. At WVU, our stereoEEG cases are ongoing, our patients are in the room, and our research protocols run live in the epilepsy monitoring unit. This continuity between clinical care and investigation is not easily replicated.
+        </div>
+      </div>
+      <div class="differentiator-stats">
+        <div>
+          <div class="diff-stat-num">50+</div>
+          <div class="diff-stat-label">SEEG research participants enrolled</div>
+        </div>
+        <div>
+          <div class="diff-stat-num">200+</div>
+          <div class="diff-stat-label">Epilepsy monitoring unit admissions per year</div>
+        </div>
+        <div>
+          <div class="diff-stat-num">8+</div>
+          <div class="diff-stat-label">Active implantable neuromodulation devices managed</div>
+        </div>
+        <div>
+          <div class="diff-stat-num">3</div>
+          <div class="diff-stat-label">IRB-approved intracranial research protocols</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Clinical research areas ── -->
+    <div class="eyebrow" style="margin-top:3rem;">Clinical Research Programs</div>
+    <h2 class="section-title">Four Translational Pillars</h2>
+    <p class="section-lead">Each program connects a scientific question directly to patients we are actively treating at WVU Medicine.</p>
+
+    <div class="clin-grid">
+
+      <div class="clin-card" id="epilepsy-surgery">
+        <div class="clin-card-num">Program 01</div>
+        <div class="clin-card-title">Epilepsy Surgery Program</div>
+        <div class="clin-card-text">
+          WVU operates a full-spectrum epilepsy surgery program including resective surgery, laser ablation (LITT), and the complete stereoEEG (SEEG) implantation pathway. Our lab has an IRB-approved research protocol that runs in parallel with standard clinical SEEG, enabling us to record high-density intracranial LFP from temporal, frontal, limbic, and parietal structures while patients undergo presurgical evaluation.
+        </div>
+        <div class="clin-card-text">
+          Patients give written informed consent to share their intracranial recordings, behavioral data, and clinical outcomes for research. This makes our dataset one of the richest platforms in the mid-Atlantic region for human single-structure electrophysiology.
+        </div>
+        <div class="clin-tag-list">
+          <span class="clin-tag">StereoEEG (SEEG)</span>
+          <span class="clin-tag">Resective surgery</span>
+          <span class="clin-tag">LITT ablation</span>
+          <span class="clin-tag">Phase II-III presurgical evaluation</span>
+          <span class="clin-tag">50+ enrolled</span>
+        </div>
+      </div>
+
+      <div class="clin-card" id="neuromodulation-devices">
+        <div class="clin-card-num">Program 02</div>
+        <div class="clin-card-title">Surgical Neuromodulation</div>
+        <div class="clin-card-text">
+          Our clinic manages one of the larger implantable neuromodulation programs in the region, including Deep Brain Stimulation (DBS), Responsive Neurostimulation (RNS), and Vagus Nerve Stimulation (VNS). This patient population provides a unique window into the real-world effects of circuit-level neuromodulation.
+        </div>
+        <div class="clin-card-text">
+          Long-term device programming data, stimulation-triggered artifact analysis, and stimulation-related mood and cognitive changes are all tractable questions in this cohort. We collaborate closely with Dr. Phillip Konrad's neurosurgical program at WVU.
+        </div>
+        <div class="clin-tag-list">
+          <span class="clin-tag">DBS (ANT, GPi, STN)</span>
+          <span class="clin-tag">RNS system</span>
+          <span class="clin-tag">VNS</span>
+          <span class="clin-tag">Closed-loop data extraction</span>
+          <span class="clin-tag">Programming optimization</span>
+        </div>
+      </div>
+
+      <div class="clin-card" id="depression-biomarkers">
+        <div class="clin-card-num">Program 03</div>
+        <div class="clin-card-title">Depression Biomarkers in Epilepsy</div>
+        <div class="clin-card-text">
+          Depression affects up to 50% of patients with drug-resistant epilepsy and is the strongest predictor of quality of life impairment. Despite its clinical significance, depression in epilepsy is systematically understudied and underdiagnosed. Our K23-funded research directly addresses this gap.
+        </div>
+        <div class="clin-card-text">
+          We are characterizing a frontal-limbic circuit-specific subtype of depression in epilepsy using intracranial EEG biomarkers acquired during standard SEEG evaluations. Candidates include frontal-limbic beta coherence, theta power in the subgenual cingulate, and phase-amplitude coupling within the amygdala-prefrontal cortex axis. This work is mentored by Dr. Helen Mayberg (ISMMS) and Dr. Muhammad Parvaz (WVU).
+        </div>
+        <div class="clin-tag-list">
+          <span class="clin-tag">K23 NIMH funded</span>
+          <span class="clin-tag">Frontal-limbic beta</span>
+          <span class="clin-tag">Subgenual cingulate</span>
+          <span class="clin-tag">PHQ-9 / NDDI-E</span>
+          <span class="clin-tag">Circuit biomarkers</span>
+        </div>
+      </div>
+
+      <div class="clin-card" id="precision-medicine">
+        <div class="clin-card-num">Program 04</div>
+        <div class="clin-card-title">Precision Medicine in Epilepsy</div>
+        <div class="clin-card-text">
+          Epilepsy is not one disease. Seizure semiology, genetic architecture, structural substrate, and comorbidity burden vary enormously between patients. Our goal is to use high-dimensional intracranial and behavioral phenotyping to identify patient subtypes that predict differential responses to antiseizure medications, surgical approaches, and neuromodulation strategies.
+        </div>
+        <div class="clin-card-text">
+          This program is directly relevant to the Appalachian patient population we serve, where healthcare access barriers, economic disadvantage, and high rates of psychiatric comorbidity compound the complexity of epilepsy management. We are developing a SENTINEL-funded care coordination model for patients with comorbid epilepsy and sleep disorders in rural WV.
+        </div>
+        <div class="clin-tag-list">
+          <span class="clin-tag">Phenotypic clustering</span>
+          <span class="clin-tag">Genetic epilepsy</span>
+          <span class="clin-tag">Biomarker-guided therapy</span>
+          <span class="clin-tag">SENTINEL RAG grant</span>
+          <span class="clin-tag">Rural health equity</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Appalachia note ── -->
+    <div class="appalachia-banner">
+      <div class="appalachia-banner-title">Serving Appalachia: Why Location Is a Strength</div>
+      <div class="appalachia-banner-text">
+        West Virginia has some of the highest rates of epilepsy in the United States, driven by elevated rates of traumatic brain injury, substance use disorder, genetic risk, and limited access to subspecialty care. WVU Medicine is the only Level 4 Epilepsy Center in the state. Our geographic position means we see the most complex, most underserved cases in the region. This is both a clinical responsibility and a scientific opportunity. It also means our findings are directly relevant to populations that academic medicine has historically overlooked.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Clinical to research pathway ─────────────────────────── -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">Translational Model</div>
+    <h2 class="section-title">How Clinical Care Drives Discovery</h2>
+    <p class="section-lead">
+      Our translational pipeline flows in both directions. Bedside observations generate scientific hypotheses. Laboratory findings return to improve patient care.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:2rem;">
+
+      <div style="background:#fff;border:1px solid var(--divider);border-radius:var(--r-lg);padding:1.75rem;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:.75rem;">🏥</div>
+        <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.5rem;font-size:1rem;">Bedside</div>
+        <div style="font-size:.88rem;line-height:1.6;color:var(--ink);">Clinical SEEG, DBS, RNS, and VNS management generates intracranial recordings and longitudinal phenotypic data.</div>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--divider);border-radius:var(--r-lg);padding:1.75rem;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:.75rem;">🔬</div>
+        <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.5rem;font-size:1rem;">Bench</div>
+        <div style="font-size:.88rem;line-height:1.6;color:var(--ink);">Signal processing, oscillatory biomarker extraction, machine learning classification, and circuit-level hypothesis testing.</div>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--divider);border-radius:var(--r-lg);padding:1.75rem;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:.75rem;">🎯</div>
+        <div style="font-family:var(--font-display);font-weight:700;color:var(--navy);margin-bottom:.5rem;font-size:1rem;">Back to Bedside</div>
+        <div style="font-size:.88rem;line-height:1.6;color:var(--ink);">Validated biomarkers inform DBS/RNS programming, surgical target selection, and psychiatric treatment decisions.</div>
+      </div>
+
+    </div>
+    <style>
+      @media(max-width:600px){
+        section.alt .wrap > div[style*="grid-template-columns:1fr 1fr 1fr"] {
+          grid-template-columns:1fr !important;
+        }
+      }
+    </style>
+  </div>
+</section>
+
+<!-- ── Transition clinic ─────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Special Program</div>
+    <h2 class="section-title">Pediatric-to-Adult Transition Clinic</h2>
+    <p class="section-lead">
+      In collaboration with Dr. Peter Morton (Pediatric Neurology, WVU), we are developing a dedicated transition epilepsy clinic to address the well-documented care gap when patients with childhood-onset epilepsy age into adult care. The transition period is associated with increased mortality, medication non-adherence, loss to follow-up, and worsening psychosocial outcomes.
+    </p>
+    <ul class="pathway-list" style="max-width:680px;">
+      <li>Structured transition protocol co-developed with pediatric and adult epilepsy teams</li>
+      <li>Behavioral health specialist embedded in the transition clinic (planned)</li>
+      <li>Research track for eligible patients with pharmacoresistant epilepsy transitioning to surgical evaluation</li>
+      <li>Outcomes registry tracking seizure control, quality of life, psychiatric comorbidity, and healthcare utilization</li>
+      <li>Patient and family education on self-management and adult epilepsy care structures</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── CTA ──────────────────────────────────────────────────── -->
+<section class="section alt">
+  <div class="wrap center">
+    <div class="eyebrow">Get Involved</div>
+    <h2 class="section-title">Clinical Research Opportunities</h2>
+    <p class="section-lead" style="max-width:560px;margin:0 auto 1.75rem;">
+      We actively recruit medical students, residents, and clinical research coordinators interested in bridging neuroscience and patient care in a comprehensive academic epilepsy center.
+    </p>
+    <a href="join.html" class="btn btn-navy">Join the Lab</a>
+    <a href="research.html" class="btn btn-border" style="margin-left:1rem;">Our Research</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">Chan Lab</div><div class="footer-brand-sub">Neural Circuits &amp; Neurotechnology Laboratory<br>West Virginia University</div><div class="footer-addr">Rockefeller Neuroscience Institute · Department of Neurology<br>West Virginia University · Morgantown, WV 26506</div></div>
+      <div><div class="footer-col-head">Research</div><ul class="footer-links"><li><a href="research.html#circuits">Brain Circuits</a></li><li><a href="research.html#bci">BCI</a></li><li><a href="research.html#neuromod">Neuromodulation</a></li><li><a href="research.html#neurodegeneration">Neurodegeneration</a></li></ul></div>
+      <div><div class="footer-col-head">Lab</div><ul class="footer-links"><li><a href="people.html">People</a></li><li><a href="publications.html">Publications</a></li><li><a href="technology.html">Technology</a></li><li><a href="clinical.html">Clinical</a></li></ul></div>
+      <div><div class="footer-col-head">Links</div><ul class="footer-links"><li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li><li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li><li><a href="studies.html">Studies</a></li><li><a href="support.html">Support the Lab</a></li><li><a href="join.html">Join Us</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ho+Wing+Chan+epilepsy" target="_blank" rel="noopener">PubMed</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Chan Lab, West Virginia University.</div>
+      <div class="footer-rni">Rockefeller Neuroscience Institute · WVU</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

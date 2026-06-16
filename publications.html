@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications | Chan Lab | WVU</title>
+  <meta name="description" content="Peer-reviewed publications from Chan Lab, WVU — automatically updated from PubMed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pub-doi {
+      display: inline-flex;
+      align-items: center;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--circuit);
+      text-decoration: none;
+      margin-left: .5rem;
+      padding: .1rem .45rem;
+      background: var(--circuit-pale);
+      border-radius: 3px;
+      transition: all var(--ease);
+    }
+    .pub-doi:hover { background: var(--circuit); color: var(--white); }
+    .pub-scholar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .5rem 1.1rem;
+      background: var(--white);
+      border: 1.5px solid var(--divider);
+      border-radius: var(--r);
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      transition: all var(--ease);
+    }
+    .pub-scholar-link:hover {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">Chan Lab</span>
+      <span class="nav-brand-sub">WVU · Rockefeller Neuroscience Institute</span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="clinical.html">Clinical</a></li>
+      <li><a href="studies.html">Studies</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html" class="nav-support">Support</a></li>
+      <li><a href="join.html" class="nav-join">Join Us</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="page-hero-label">Publications</div>
+    <h1 class="page-hero-title">Peer-Reviewed Research</h1>
+    <p class="page-hero-desc">
+      Publications fetched automatically from PubMed and updated on each page load. Chan Lab author names are highlighted in bold.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <!-- External links row -->
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;">
+      <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Chan+HW+epilepsy&sort=date" target="_blank" rel="noopener" class="pub-scholar-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        PubMed ↗
+      </a>
+      <a href="https://scholar.google.com/scholar?q=Ho+Wing+Chan+epilepsy" target="_blank" rel="noopener" class="pub-scholar-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Google Scholar ↗
+      </a>
+    </div>
+
+    <!-- Search input -->
+    <div class="pub-controls">
+      <input type="search" id="pub-search" class="pub-search" placeholder="Search publications by title, author, or journal…" aria-label="Search publications">
+    </div>
+
+    <!-- Auto-update notice (hidden until pubs load) -->
+    <div id="pubs-notice" class="pub-notice" style="display:none;">
+      ℹ Publication list is fetched live from PubMed on each visit and reflects all indexed articles. To update the search query, edit <code>publications.js</code>.
+    </div>
+
+    <!-- Loading spinner -->
+    <div id="pubs-loading" class="pub-loading">
+      Fetching publications from PubMed…
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Publications render target -->
+    <div id="pubs-container"></div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">Chan Lab</div><div class="footer-brand-sub">Neural Circuits &amp; Neurotechnology Laboratory<br>West Virginia University</div><div class="footer-addr">Rockefeller Neuroscience Institute · Department of Neurology<br>West Virginia University · Morgantown, WV 26506</div></div>
+      <div><div class="footer-col-head">Research</div><ul class="footer-links"><li><a href="research.html#circuits">Brain Circuits</a></li><li><a href="research.html#bci">Brain-Computer Interfaces</a></li><li><a href="research.html#neuromod">Neuromodulation</a></li><li><a href="research.html#neurodegeneration">Neurodegeneration</a></li></ul></div>
+      <div><div class="footer-col-head">Lab</div><ul class="footer-links"><li><a href="people.html">People</a></li><li><a href="publications.html">Publications</a></li><li><a href="technology.html">Technology</a></li><li><a href="clinical.html">Clinical</a></li></ul></div>
+      <div><div class="footer-col-head">Links</div><ul class="footer-links"><li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li><li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li><li><a href="studies.html">Studies</a></li><li><a href="support.html">Support the Lab</a></li><li><a href="join.html">Join Us</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Chan Lab, West Virginia University.</div>
+      <div class="footer-rni">Rockefeller Neuroscience Institute · WVU</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script src="publications.js"></script>
+</body>
+</html>
