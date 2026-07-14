@@ -1,144 +1,112 @@
-/* publications.js — PubMed E-utilities integration for ChanLab */
-
-/*
-  CONFIGURATION
-  ─────────────
-  Edit PUBMED_SEARCH to match your author name in PubMed.
-  The best approach is to find your unique author identifier in
-  PubMed Author Search: https://www.ncbi.nlm.nih.gov/myncbi/
-  and use Author ID for highest precision.
-
-  Current strategy: name search + MeSH topic filter
-*/
-
-const PUBMED_SEARCH = '("Chan Ho Wing"[Author] OR "Chan H W"[Author] OR "Ho Wing Chan"[Author]) AND (epilepsy[MeSH] OR seizure[MeSH] OR "brain-computer interface"[Title/Abstract] OR intracranial[Title/Abstract] OR "deep brain stimulation"[MeSH])';
-const MAX_RESULTS   = 100;
-
-/* Author name to bold in author lists */
-const MY_NAMES = ['Chan H', 'Chan HW', 'Chan Ho W', 'Chan A'];
-
-const BASE = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/';
-
-async function loadPubs() {
+/* publications.js â€” pulls works from ORCID public API */
+(function () {
+  const ORCID_ID = '0009-0002-5055-9470';
   const container = document.getElementById('pubs-container');
-  const loading   = document.getElementById('pubs-loading');
-  const notice    = document.getElementById('pubs-notice');
-
+  const loading = document.getElementById('pubs-loading');
+  const notice = document.getElementById('pubs-notice');
+  const search = document.getElementById('pub-search');
   if (!container) return;
 
-  try {
-    /* ── 1. Search ── */
-    const searchResp = await fetch(
-      `${BASE}esearch.fcgi?db=pubmed&term=${encodeURIComponent(PUBMED_SEARCH)}&retmax=${MAX_RESULTS}&retmode=json&sort=pubdate`
-    );
-    const searchData = await searchResp.json();
-    const ids        = searchData?.esearchresult?.idlist || [];
+  let allWorks = [];
 
-    if (!ids.length) {
-      loading.style.display = 'none';
-      container.innerHTML = `
-        <div class="pub-notice">
-          No publications fetched automatically. 
-          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(PUBMED_SEARCH)}&sort=date" target="_blank" rel="noopener">
-            View on PubMed ↗
-          </a>
-        </div>`;
+  const API = `https://pub.orcid.org/v3.0/${ORCID_ID}/works`;
+
+  fetch(API, { headers: { Accept: 'application/json' } })
+    .then(r => {
+      if (!r.ok) throw new Error('ORCID request failed: ' + r.status);
+      return r.json();
+    })
+    .then(data => {
+      const groups = data.group || [];
+      if (loading) loading.style.display = 'none';
+
+      if (!groups.length) {
+        container.innerHTML = '<p style="color:var(--muted);font-size:.95rem;">No publications found on ORCID yet.</p>';
+        return;
+      }
+
+      allWorks = groups.map(g => {
+        const s = g['work-summary'] && g['work-summary'][0];
+        if (!s) return null;
+        const title = s.title && s.title.title ? s.title.title.value : 'Untitled';
+        const journal = s['journal-title'] ? s['journal-title'].value : '';
+        const year = s['publication-date'] && s['publication-date'].year
+          ? s['publication-date'].year.value : '';
+        let link = '';
+        const ids = s['external-ids'] && s['external-ids']['external-id'];
+        if (ids) {
+          const doi = ids.find(i => i['external-id-type'] === 'doi');
+          if (doi) {
+            link = (doi['external-id-url'] && doi['external-id-url'].value)
+              ? doi['external-id-url'].value
+              : 'https://doi.org/' + doi['external-id-value'];
+          } else if (ids[0] && ids[0]['external-id-url']) {
+            link = ids[0]['external-id-url'].value;
+          }
+        }
+        return { title, journal, year: parseInt(year) || 0, link };
+      }).filter(Boolean);
+
+      allWorks.sort((a, b) => b.year - a.year);
+      if (notice) notice.style.display = 'block';
+      render(allWorks);
+    })
+    .catch(err => {
+      console.error(err);
+      if (loading) {
+        loading.innerHTML = 'Unable to load publications automatically. ' +
+          `View the full list on <a href="https://orcid.org/${ORCID_ID}" target="_blank" rel="noopener" style="color:var(--blue);">ORCID</a>.`;
+      }
+    });
+
+  function render(works) {
+    const byYear = {};
+    works.forEach(w => {
+      const y = w.year || 'Other';
+      (byYear[y] = byYear[y] || []).push(w);
+    });
+    const years = Object.keys(byYear).sort((a, b) => {
+      if (a === 'Other') return 1;
+      if (b === 'Other') return -1;
+      return b - a;
+    });
+
+    container.innerHTML = '';
+    if (!works.length) {
+      container.innerHTML = '<p style="color:var(--muted);font-size:.95rem;">No publications match your search.</p>';
       return;
     }
 
-    /* ── 2. Fetch summaries ── */
-    const summResp = await fetch(
-      `${BASE}esummary.fcgi?db=pubmed&id=${ids.join(',')}&retmode=json`
-    );
-    const summData = await summResp.json();
-    const result   = summData?.result || {};
-
-    loading.style.display = 'none';
-    if (notice) notice.style.display = 'block';
-
-    /* ── 3. Group by year ── */
-    const byYear = {};
-    ids.forEach(id => {
-      const pub = result[id];
-      if (!pub || pub.error) return;
-      const year = (pub.pubdate || pub.epubdate || '').match(/\d{4}/)?.[0] || 'In Press';
-      if (!byYear[year]) byYear[year] = [];
-      byYear[year].push(pub);
-    });
-
-    const years = Object.keys(byYear).sort((a, b) => (b === 'In Press' ? -1 : b - a));
-
-    container.innerHTML = years.map(yr => `
-      <div class="pub-year-group">
-        <div class="pub-year-header">${yr}</div>
-        ${byYear[yr].map(p => renderPub(p)).join('')}
-      </div>`).join('');
-
-    /* Filter on search input */
-    const searchInput = document.getElementById('pub-search');
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        const q = searchInput.value.toLowerCase();
-        document.querySelectorAll('.pub-item').forEach(el => {
-          el.style.display = el.textContent.toLowerCase().includes(q) ? '' : 'none';
-        });
+    years.forEach(y => {
+      const block = document.createElement('div');
+      block.className = 'pub-year-group';
+      block.innerHTML = `<div class="pub-year">${y}</div>`;
+      byYear[y].forEach(w => {
+        const item = document.createElement('div');
+        item.className = 'pub-item';
+        const titleHtml = w.link
+          ? `<a href="${w.link}" target="_blank" rel="noopener" class="pub-title-link">${w.title}</a>`
+          : `<span class="pub-title-link">${w.title}</span>`;
+        item.innerHTML =
+          `<div class="pub-title">${titleHtml}</div>` +
+          (w.journal ? `<div class="pub-journal">${w.journal}</div>` : '');
+        block.appendChild(item);
       });
-    }
-
-  } catch (err) {
-    if (loading) loading.style.display = 'none';
-    container.innerHTML = `
-      <div class="pub-notice">
-        ⚠ Could not reach PubMed API. 
-        <a href="https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(PUBMED_SEARCH)}&sort=date" target="_blank" rel="noopener">
-          Search PubMed directly ↗
-        </a>
-      </div>`;
-    console.error('[ChanLab publications]', err);
+      container.appendChild(block);
+    });
   }
-}
 
-function renderPub(pub) {
-  const title   = (pub.title  || 'Untitled').replace(/\.$/, '');
-  const authors = formatAuthors(pub.authors || []);
-  const journal = pub.fulljournalname || pub.source || '';
-  const volume  = pub.volume ? `;${pub.volume}` : '';
-  const issue   = pub.issue  ? `(${pub.issue})` : '';
-  const pages   = pub.pages  ? `:${pub.pages}` : '';
-  const year    = (pub.pubdate || '').match(/\d{4}/)?.[0] || '';
-  const pmid    = pub.uid;
-  const doi     = pub.elocationid?.match(/doi:\s*(.+)/i)?.[1]?.trim() || '';
-
-  return `
-    <div class="pub-item" data-pmid="${pmid}">
-      <div>
-        <div class="pub-title">
-          <a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">${title}</a>
-        </div>
-        <div class="pub-authors">${authors}</div>
-        <div class="pub-journal">
-          <em>${journal}</em>${volume}${issue}${pages}.${year ? ' ' + year + '.' : ''}
-          ${doi ? `<a href="https://doi.org/${doi}" target="_blank" rel="noopener" class="pub-doi">DOI</a>` : ''}
-        </div>
-      </div>
-      <div>
-        <a class="pub-pmid-btn" href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">
-          PMID ${pmid} ↗
-        </a>
-      </div>
-    </div>`;
-}
-
-function formatAuthors(authors) {
-  const names = authors.map(a => a.name || '').filter(Boolean);
-  if (!names.length) return '';
-  const formatted = names.map(n =>
-    MY_NAMES.some(m => n.startsWith(m) || n.includes(m))
-      ? `<strong>${n}</strong>`
-      : n
-  );
-  if (formatted.length <= 12) return formatted.join(', ');
-  return formatted.slice(0, 12).join(', ') + ` et al.`;
-}
-
-document.addEventListener('DOMContentLoaded', loadPubs);
+  // Search filter
+  if (search) {
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase().trim();
+      if (!q) { render(allWorks); return; }
+      const filtered = allWorks.filter(w =>
+        w.title.toLowerCase().includes(q) ||
+        w.journal.toLowerCase().includes(q) ||
+        String(w.year).includes(q)
+      );
+      render(filtered);
+    });
+  }
+})();
