@@ -10,34 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ── Filter bar ── */
-    .filter-bar {
-      display:flex;
-      flex-wrap:wrap;
-      gap:.5rem;
-      margin-bottom:2.5rem;
-    }
+    .filter-bar { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:2.5rem; }
     .filter-btn {
-      padding:.45rem 1.1rem;
-      border-radius:999px;
-      border:1.5px solid var(--divider);
-      background:#fff;
-      font-family:var(--font-display);
-      font-size:.8rem;
-      font-weight:600;
-      color:var(--navy);
-      cursor:pointer;
-      transition:all .15s;
+      padding:.45rem 1.1rem; border-radius:999px; border:1.5px solid var(--divider);
+      background:#fff; font-family:var(--font-display); font-size:.8rem; font-weight:600;
+      color:var(--navy); cursor:pointer; transition:all .15s;
     }
-    .filter-btn:hover {
-      border-color:var(--blue);
-      color:var(--blue);
-    }
-    .filter-btn.active {
-      background:var(--navy);
-      border-color:var(--navy);
-      color:#fff;
-    }
+    .filter-btn:hover { border-color:var(--blue); color:var(--blue); }
+    .filter-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; }
     .filter-btn[data-cat="grant"].active   { background:#15693e; border-color:#15693e; }
     .filter-btn[data-cat="paper"].active   { background:#1B6DB8; border-color:#1B6DB8; }
     .filter-btn[data-cat="award"].active   { background:#9b4a0c; border-color:#9b4a0c; }
@@ -45,85 +25,35 @@
     .filter-btn[data-cat="event"].active   { background:#002D62; border-color:#002D62; }
     .filter-btn[data-cat="people"].active  { background:#b8860b; border-color:#b8860b; }
 
-    /* ── Year dividers ── */
     .year-group { margin-bottom:3rem; }
     .year-divider {
-      font-family:var(--font-display);
-      font-size:2rem;
-      font-weight:700;
-      color:var(--navy);
-      border-bottom:2px solid var(--divider);
-      padding-bottom:.5rem;
-      margin-bottom:1.5rem;
+      font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--navy);
+      border-bottom:2px solid var(--divider); padding-bottom:.5rem; margin-bottom:1.5rem;
     }
 
-    /* ── News item ── */
     .news-item {
-      display:grid;
-      grid-template-columns:80px 1fr;
-      gap:1.5rem;
-      padding:1.5rem 0;
-      border-bottom:1px solid var(--divider);
+      display:grid; grid-template-columns:80px 1fr; gap:1.5rem;
+      padding:1.5rem 0; border-bottom:1px solid var(--divider);
     }
     .news-item:last-child { border-bottom:none; }
-    .news-date {
-      text-align:center;
-      flex-shrink:0;
-    }
+    .news-date { text-align:center; flex-shrink:0; }
     .news-month {
-      font-family:var(--font-display);
-      font-size:.7rem;
-      font-weight:700;
-      letter-spacing:.1em;
-      text-transform:uppercase;
-      color:var(--blue);
+      font-family:var(--font-display); font-size:.7rem; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase; color:var(--blue);
     }
-    .news-day {
-      font-family:var(--font-display);
-      font-size:1.75rem;
-      font-weight:700;
-      color:var(--navy);
-      line-height:1;
-    }
-    .news-year {
-      font-size:.75rem;
-      color:var(--muted);
-    }
+    .news-day { font-family:var(--font-display); font-size:1.75rem; font-weight:700; color:var(--navy); line-height:1; }
+    .news-year { font-size:.75rem; color:var(--muted); }
     .news-body { min-width:0; }
     .news-title {
-      font-family:var(--font-display);
-      font-size:1.05rem;
-      font-weight:600;
-      color:var(--navy);
-      margin:.4rem 0 .45rem;
-      line-height:1.35;
+      font-family:var(--font-display); font-size:1.05rem; font-weight:600;
+      color:var(--navy); margin:.4rem 0 .45rem; line-height:1.35;
     }
-    .news-desc {
-      font-size:.9rem;
-      color:var(--ink);
-      line-height:1.65;
-    }
-    .news-link {
-      display:inline-block;
-      margin-top:.6rem;
-      font-size:.82rem;
-      font-weight:600;
-      color:var(--blue);
-      text-decoration:none;
-    }
-    .news-link:hover { text-decoration:underline; }
+    .news-desc { font-size:.9rem; color:var(--ink); line-height:1.65; }
 
-    /* ── Badges ── already in style.css, repeated here for safety ── */
     .nbadge {
-      display:inline-block;
-      padding:.18rem .55rem;
-      border-radius:4px;
-      font-family:var(--font-display);
-      font-size:.68rem;
-      font-weight:700;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      line-height:1.4;
+      display:inline-block; padding:.18rem .55rem; border-radius:4px;
+      font-family:var(--font-display); font-size:.68rem; font-weight:700;
+      letter-spacing:.06em; text-transform:uppercase; line-height:1.4;
     }
     .nb-grant   { background:#d4edda; color:#15693e; }
     .nb-paper   { background:#d0e8f9; color:#1B6DB8; }
@@ -132,8 +62,6 @@
     .nb-event   { background:#dce3ef; color:#002D62; }
     .nb-people  { background:#fef3cd; color:#b8860b; }
 
-    /* ── Hidden items ── */
-    .news-item[hidden] { display:none; }
     .news-item[data-hidden] { display:none !important; }
     .year-group.empty { display:none; }
   </style>
@@ -176,7 +104,6 @@
 <section class="section">
   <div class="wrap">
 
-    <!-- Filter bar -->
     <div class="filter-bar" role="group" aria-label="Filter news by category">
       <button class="filter-btn active" data-cat="all">All</button>
       <button class="filter-btn" data-cat="grant">Grants</button>
@@ -187,33 +114,46 @@
       <button class="filter-btn" data-cat="press">Press</button>
     </div>
 
-    <!-- ── 2025 ── -->
-    <div class="year-group" id="year-2025">
-      <div class="year-divider">2025</div>
+    <!-- ── 2026 ── -->
+    <div class="year-group" id="year-2026">
+      <div class="year-divider">2026</div>
 
-      <div class="news-item" data-cat="grant">
+      <div class="news-item" data-cat="people">
         <div class="news-date">
-          <div class="news-month">Jun</div>
-          <div class="news-day">15</div>
-          <div class="news-year">2025</div>
+          <div class="news-month">Jul</div>
+          <div class="news-day">20</div>
+          <div class="news-year">2026</div>
         </div>
         <div class="news-body">
-          <div><span class="nbadge nb-grant">Grant</span></div>
-          <div class="news-title">K23 Application Under Review at NIMH Study Section</div>
-          <div class="news-desc">Andy's K23 Mentored Patient-Oriented Research Career Development Award, "Characterizing Frontal-Limbic Circuit Specific Subtype of Depression in Epilepsy Using Intracranial EEG" (Award No. KMH147414A), has been accepted for review at the July 2025 ZRG1 SEP study section at NIMH. This is the primary funding vehicle for the lab's biomarker discovery program.</div>
+          <div><span class="nbadge nb-people">Lab Member</span></div>
+          <div class="news-title">Two Undergraduate Students Join the Lab for Summer Research</div>
+          <div class="news-desc">The Chan Lab welcomes Ashton Fulton (Freshman, Harvard University) and Keira Dunn (incoming Freshman majoring in neuroscience, West Virginia University) as undergraduate researchers. Both students are leading their own summer research projects in the lab.</div>
         </div>
       </div>
 
       <div class="news-item" data-cat="paper">
         <div class="news-date">
-          <div class="news-month">Apr</div>
-          <div class="news-day">22</div>
-          <div class="news-year">2025</div>
+          <div class="news-month">Jul</div>
+          <div class="news-day">10</div>
+          <div class="news-year">2026</div>
         </div>
         <div class="news-body">
           <div><span class="nbadge nb-paper">Publication</span></div>
           <div class="news-title">In-Ear EEG Manuscript Submitted to <em>Sensors</em> (MDPI)</div>
-          <div class="news-desc">Our in-ear EEG platform manuscript has been submitted to <em>Sensors</em> (MDPI), 2026, describing a novel Pearson r²-derived SNR metric for ambulatory interictal epileptiform discharge detection using the external auditory canal as a recording site. The manuscript was substantially co-written by medical student Ryan. Developed in collaboration with Starkey Hearing Technologies.</div>
+          <div class="news-desc">Our in-ear EEG platform manuscript has been submitted to <em>Sensors</em> (MDPI), 2026, describing a novel Pearson r²-derived SNR metric for ambulatory interictal epileptiform discharge detection using the external auditory canal as a recording site. The manuscript was substantially co-written by medical student Ryan Emadi. Developed in collaboration with Starkey Hearing Technologies.</div>
+        </div>
+      </div>
+
+      <div class="news-item" data-cat="grant">
+        <div class="news-date">
+          <div class="news-month">Jun</div>
+          <div class="news-day">15</div>
+          <div class="news-year">2026</div>
+        </div>
+        <div class="news-body">
+          <div><span class="nbadge nb-grant">Grant</span></div>
+          <div class="news-title">K23 Application Under Review at NIMH Study Section</div>
+          <div class="news-desc">Andy's K23 Mentored Patient-Oriented Research Career Development Award, "Characterizing Frontal-Limbic Circuit Specific Subtype of Depression in Epilepsy Using Intracranial EEG" (Award No. KMH147414A), has been accepted for review at the July 2026 ZRG1 SEP study section at NIMH. This is the primary funding vehicle for the lab's biomarker discovery program.</div>
         </div>
       </div>
 
@@ -221,12 +161,12 @@
         <div class="news-date">
           <div class="news-month">Apr</div>
           <div class="news-day">10</div>
-          <div class="news-year">2025</div>
+          <div class="news-year">2026</div>
         </div>
         <div class="news-body">
           <div><span class="nbadge nb-grant">Grant</span></div>
           <div class="news-title">SENTINEL RAG Proposal Submitted — Epilepsy &amp; Sleep Comorbidity in Appalachia</div>
-          <div class="news-desc">Andy co-investigated a Research Activity Grant (RAG) proposal, "SENTINEL," led by Dr. Lulu Guo (WVU Neurology) targeting care coordination for patients with comorbid epilepsy and sleep disorders in rural Appalachian communities. Proposal focuses on telehealth-enabled, community health worker-mediated outreach.</div>
+          <div class="news-desc">Andy co-submitted a Research Activity Grant (RAG) proposal, "SENTINEL," with Dr. Ray Guo targeting care coordination for patients with comorbid epilepsy and sleep disorders in rural Appalachian communities. Proposal focuses on telehealth-enabled, community health worker-mediated outreach.</div>
         </div>
       </div>
 
@@ -234,7 +174,7 @@
         <div class="news-date">
           <div class="news-month">Mar</div>
           <div class="news-day">10</div>
-          <div class="news-year">2025</div>
+          <div class="news-year">2026</div>
         </div>
         <div class="news-body">
           <div><span class="nbadge nb-event">Presentation</span></div>
@@ -247,25 +187,12 @@
         <div class="news-date">
           <div class="news-month">Feb</div>
           <div class="news-day">18</div>
-          <div class="news-year">2025</div>
+          <div class="news-year">2026</div>
         </div>
         <div class="news-body">
           <div><span class="nbadge nb-event">Presentation</span></div>
           <div class="news-title">Grand Rounds: "Epilepsy as a Brain Disease Across the Lifespan" — WVU Family Medicine</div>
-          <div class="news-desc">Andy co-presented a grand rounds lecture to WVU Family Medicine with Dr. D. Kojo Adelson (Pediatric Neurology), covering the developmental epidemiology of epilepsy, seizure recognition, first-line treatment, and indications for subspecialty referral across pediatric and adult populations.</div>
-        </div>
-      </div>
-
-      <div class="news-item" data-cat="people">
-        <div class="news-date">
-          <div class="news-month">Jan</div>
-          <div class="news-day">28</div>
-          <div class="news-year">2025</div>
-        </div>
-        <div class="news-body">
-          <div><span class="nbadge nb-people">Lab Member</span></div>
-          <div class="news-title">Two Undergraduate Students Join the Lab for Summer Research</div>
-          <div class="news-desc">The Chan Lab welcomes Ashton Fulton (Freshman, Harvard University) and Keira Dunn (incoming Freshman majoring in neuroscience, West Virginia University) as undergraduate researchers. Both students are leading their own summer research projects in the lab.</div>
+          <div class="news-desc">Andy co-presented a grand rounds lecture to WVU Family Medicine with Dr. Dave Adelson (Neurosurgery), covering the developmental epidemiology of epilepsy, seizure recognition, first-line treatment, and indications for subspecialty referral across pediatric and adult populations.</div>
         </div>
       </div>
 
@@ -273,7 +200,7 @@
         <div class="news-date">
           <div class="news-month">Jan</div>
           <div class="news-day">15</div>
-          <div class="news-year">2025</div>
+          <div class="news-year">2026</div>
         </div>
         <div class="news-body">
           <div><span class="nbadge nb-press">Media</span></div>
@@ -282,69 +209,30 @@
         </div>
       </div>
 
-    </div><!-- /year-2025 -->
+    </div><!-- /year-2026 -->
 
-    <!-- ── 2024 ── -->
-    <div class="year-group" id="year-2024">
-      <div class="year-divider">2024</div>
-
-      <div class="news-item" data-cat="grant">
-        <div class="news-date">
-          <div class="news-month">Dec</div>
-          <div class="news-day">09</div>
-          <div class="news-year">2024</div>
-        </div>
-        <div class="news-body">
-          <div><span class="nbadge nb-grant">Grant</span></div>
-          <div class="news-title">K23 Application Submitted to NIMH</div>
-          <div class="news-desc">Andy submitted the K23 Mentored Patient-Oriented Research Career Development Award application to NIMH after an 18-month development process. The application targets frontal-limbic circuit biomarkers of depression in drug-resistant epilepsy, leveraging the WVU SEEG research platform and mentorship from Drs. Mayberg, Parvaz, Konrad, Zheng, and Nelson.</div>
-        </div>
-      </div>
-
-      <div class="news-item" data-cat="event">
-        <div class="news-date">
-          <div class="news-month">Nov</div>
-          <div class="news-day">30</div>
-          <div class="news-year">2024</div>
-        </div>
-        <div class="news-body">
-          <div><span class="nbadge nb-event">Conference</span></div>
-          <div class="news-title">AES Annual Meeting — Abstract Accepted</div>
-          <div class="news-desc">Abstract accepted to the American Epilepsy Society Annual Meeting, presenting preliminary data from the intracranial EEG depression biomarker dataset and methodology for the K23 clinical protocol.</div>
-        </div>
-      </div>
-
-      <div class="news-item" data-cat="paper">
-        <div class="news-date">
-          <div class="news-month">Aug</div>
-          <div class="news-day">14</div>
-          <div class="news-year">2024</div>
-        </div>
-        <div class="news-body">
-          <div><span class="nbadge nb-paper">Publication</span></div>
-          <div class="news-title">In-Ear EEG Manuscript Submitted to <em>BMC Digital Health</em></div>
-          <div class="news-desc">First external submission of the in-ear EEG manuscript to BMC Digital Health. Manuscript subsequently revised and resubmitted to <em>Sensors</em> (MDPI) with expanded methodological detail and peer reviewer responses incorporated.</div>
-        </div>
-      </div>
+    <!-- ── 2025 ── -->
+    <div class="year-group" id="year-2025">
+      <div class="year-divider">2025</div>
 
       <div class="news-item" data-cat="grant">
         <div class="news-date">
-          <div class="news-month">Jun</div>
+          <div class="news-month">Oct</div>
           <div class="news-day">01</div>
-          <div class="news-year">2024</div>
+          <div class="news-year">2025</div>
         </div>
         <div class="news-body">
           <div><span class="nbadge nb-grant">Grant</span></div>
           <div class="news-title">NSF IUCRC BRAIN Pilot Subaward — AR-BCI Aphasia Study</div>
-          <div class="news-desc">The Chan Lab received a subaward through the NSF IUCRC BRAIN Center supporting early-stage development of an augmented reality brain-computer interface for aphasia rehabilitation using the Cognixion Axon-R headset with integrated eye-tracking. IRB umbrella protocol developed to cover multi-site IUCRC research activities.</div>
+          <div class="news-desc">The Chan Lab received a subaward through the NSF IUCRC BRAIN Center supporting early-stage development of an augmented reality brain-computer interface for aphasia rehabilitation using the Cognixion Axon-R headset.</div>
         </div>
       </div>
 
       <div class="news-item" data-cat="people">
         <div class="news-date">
-          <div class="news-month">Jul</div>
-          <div class="news-day">01</div>
-          <div class="news-year">2024</div>
+          <div class="news-month">Sep</div>
+          <div class="news-day">17</div>
+          <div class="news-year">2025</div>
         </div>
         <div class="news-body">
           <div><span class="nbadge nb-people">Lab Member</span></div>
@@ -353,7 +241,7 @@
         </div>
       </div>
 
-    </div><!-- /year-2024 -->
+    </div><!-- /year-2025 -->
 
   </div>
 </section>
@@ -364,10 +252,10 @@
     <div class="eyebrow">Stay Updated</div>
     <h2 class="section-title">Follow the Lab</h2>
     <p class="section-lead" style="max-width:520px;margin:0 auto 1.75rem;">
-      For real-time updates on publications, grants, and presentations, follow Andy on Google Scholar or connect on LinkedIn.
+      For real-time updates on publications, grants, and presentations, follow Andy on ORCID.
     </p>
-    <a href="https://scholar.google.com" target="_blank" rel="noopener" class="btn btn-navy">Google Scholar</a>
-    <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ho+Wing+Chan+epilepsy" target="_blank" rel="noopener" class="btn btn-border" style="margin-left:1rem;">PubMed</a>
+    <a href="https://orcid.org/0009-0002-5055-9470" target="_blank" rel="noopener" class="btn btn-navy">ORCID</a>
+    <a href="publications.html" class="btn btn-border" style="margin-left:1rem;">Publications</a>
   </div>
 </section>
 
@@ -377,10 +265,10 @@
       <div><div class="footer-brand-name">Chan Lab</div><div class="footer-brand-sub">Neural Circuits &amp; Neurotechnology Laboratory<br>West Virginia University</div><div class="footer-addr">Rockefeller Neuroscience Institute · Department of Neurology<br>West Virginia University · Morgantown, WV 26506</div></div>
       <div><div class="footer-col-head">Research</div><ul class="footer-links"><li><a href="research.html#circuits">Brain Circuits</a></li><li><a href="research.html#bci">BCI</a></li><li><a href="research.html#neuromod">Neuromodulation</a></li><li><a href="research.html#neurodegeneration">Neurodegeneration</a></li></ul></div>
       <div><div class="footer-col-head">Lab</div><ul class="footer-links"><li><a href="people.html">People</a></li><li><a href="publications.html">Publications</a></li><li><a href="technology.html">Technology</a></li><li><a href="clinical.html">Clinical</a></li></ul></div>
-      <div><div class="footer-col-head">Links</div><ul class="footer-links"><li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li><li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li><li><a href="studies.html">Studies</a></li><li><a href="support.html">Support the Lab</a></li><li><a href="join.html">Join Us</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ho+Wing+Chan+epilepsy" target="_blank" rel="noopener">PubMed</a></li></ul></div>
+      <div><div class="footer-col-head">Links</div><ul class="footer-links"><li><a href="https://medicine.wvu.edu/neurology/" target="_blank" rel="noopener">WVU Neurology</a></li><li><a href="https://rockefellerneuroscience.org/" target="_blank" rel="noopener">RNI</a></li><li><a href="studies.html">Studies</a></li><li><a href="support.html">Support the Lab</a></li><li><a href="join.html">Join Us</a></li><li><a href="https://orcid.org/0009-0002-5055-9470" target="_blank" rel="noopener">ORCID</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2025 Chan Lab, West Virginia University.</div>
+      <div class="footer-copy">© 2026 Chan Lab, West Virginia University.</div>
       <div class="footer-rni">Rockefeller Neuroscience Institute · WVU</div>
     </div>
   </div>
@@ -389,28 +277,21 @@
 <script src="nav.js"></script>
 
 <script>
-/* ── News filter ── */
 (function(){
   const btns = document.querySelectorAll('.filter-btn');
   const items = document.querySelectorAll('.news-item');
   const groups = document.querySelectorAll('.year-group');
-
   function filter(cat){
     btns.forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
     items.forEach(item => {
-      if(cat === 'all' || item.dataset.cat === cat){
-        item.removeAttribute('data-hidden');
-      } else {
-        item.setAttribute('data-hidden','');
-      }
+      if(cat === 'all' || item.dataset.cat === cat){ item.removeAttribute('data-hidden'); }
+      else { item.setAttribute('data-hidden',''); }
     });
-    // Hide year groups if all their items are hidden
     groups.forEach(g => {
       const visible = g.querySelectorAll('.news-item:not([data-hidden])').length;
       g.classList.toggle('empty', visible === 0);
     });
   }
-
   btns.forEach(btn => btn.addEventListener('click', () => filter(btn.dataset.cat)));
 })();
 </script>
