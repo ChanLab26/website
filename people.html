@@ -40,15 +40,46 @@
   </div>
 </nav>
 
-<header class="page-hero people-hero-compact">
-  <div class="wrap">
-    <div class="page-hero-label">People</div>
-    <h1 class="page-hero-title">The Team</h1>
-    <p class="page-hero-desc">
-      The Neural Circuits &amp; Neurotechnology Laboratory brings together clinician-scientists, engineers, and trainees united by one goal: understanding and healing the human brain.
-    </p>
+<header class="page-hero people-hero-compact" style="background:linear-gradient(135deg,var(--navy) 0%,var(--circuit) 100%);position:relative;overflow:hidden;">
+  <!-- Gold accent bar -->
+  <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--gold);"></div>
+  <div class="wrap" style="padding-top:3.5rem;padding-bottom:3.5rem;position:relative;">
+    <div class="people-hero-grid" style="display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;">
+      <!-- Left: text -->
+      <div>
+        <div style="display:inline-block;font-family:var(--font-display);font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1.5px solid rgba(234,170,0,.5);border-radius:999px;padding:.35rem 1rem;margin-bottom:1.25rem;">Our People</div>
+        <h1 style="font-family:var(--font-display);font-size:2.75rem;font-weight:700;color:#fff;line-height:1.05;margin-bottom:1.1rem;">Meet the Team</h1>
+        <p style="font-size:1.05rem;color:rgba(255,255,255,.82);line-height:1.7;max-width:520px;">
+          A team of clinician-scientists, engineers, and trainees at the WVU Rockefeller Neuroscience Institute, united by one goal: understanding and healing the human brain.
+        </p>
+      </div>
+      <!-- Right: stat highlights in gold/white -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(234,170,0,.3);border-radius:14px;padding:1.5rem 1.25rem;text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--gold);line-height:1;">3</div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75);margin-top:.4rem;line-height:1.35;">Faculty Mentors &amp; Collaborators</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(234,170,0,.3);border-radius:14px;padding:1.5rem 1.25rem;text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--gold);line-height:1;">2</div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75);margin-top:.4rem;line-height:1.35;">Graduate &amp; Medical Students</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(234,170,0,.3);border-radius:14px;padding:1.5rem 1.25rem;text-align:center;">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--gold);line-height:1;">2</div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75);margin-top:.4rem;line-height:1.35;">Undergraduate Researchers</div>
+        </div>
+        <div style="background:rgba(234,170,0,.15);border:1px solid rgba(234,170,0,.5);border-radius:14px;padding:1.5rem 1.25rem;text-align:center;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--gold);line-height:1.2;">Join Us →</div>
+          <a href="join.html" style="position:absolute;inset:0;" aria-label="Join the lab"></a>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
+<style>
+  @media(max-width:800px){
+    .people-hero-grid { grid-template-columns:1fr !important; gap:2rem !important; }
+  }
+</style>
 
 <!-- ── Principal Investigator (FIRST — appears immediately) ───── -->
 <section class="section section-tight">
@@ -194,9 +225,7 @@
     <div class="people-section-title">Undergraduate Students</div>
     <div class="people-grid">
       <div class="person-card">
-        <div style="height:120px;width:120px;margin:0 auto 1rem;border-radius:50%;overflow:hidden;">
-          <img src="ashton.jpg" alt=">Ashton Fulton" style="width:120px;height:120px;object-fit:cover;">
-        </div>
+        <div class="avatar">AF</div>
         <div class="person-name">Ashton Fulton</div>
         <div class="person-role">Freshman<br>Harvard University</div>
         <div class="person-tag">Active</div>
