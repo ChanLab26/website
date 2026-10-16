@@ -1,6 +1,6 @@
-# Chan Lab Website
+# Neural Circuits and Neurotechnology Research Group Website
 
-**Neural Circuits and Neurotechnology Laboratory**  
+**Neural Circuits and Neurotechnology Research Group**  
 West Virginia University, Rockefeller Neuroscience Institute  
 Department of Neurology
 
@@ -228,4 +228,4 @@ Change any of these to retheme the entire site instantly.
 
 ---
 
-*Chan Lab · West Virginia University · Rockefeller Neuroscience Institute*
+*Neural Circuits and Neurotechnology Research Group · West Virginia University · Rockefeller Neuroscience Institute*

@@ -1,4 +1,4 @@
-/* publications.js â€” pulls works from ORCID public API */
+/* publications.js — pulls works from ORCID public API */
 (function () {
   const ORCID_ID = '0009-0002-5055-9470';
   const container = document.getElementById('pubs-container');
